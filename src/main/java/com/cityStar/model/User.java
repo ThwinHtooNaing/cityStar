@@ -12,7 +12,7 @@ import com.cityStar.enums.Role;
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -27,9 +27,10 @@ public abstract class User {
 
     private String password;
     private String address;
-    private Integer age;
+    private int age;
 
     @Enumerated(EnumType.STRING)
     private Role role; 
 
+    private String profilePath;
 }

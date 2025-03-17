@@ -15,9 +15,9 @@ public class Doctor extends User {
 
     private String bio;
     private String contactInfo;
-    private String specialty;
+    private String speciality;
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Availability> availabilities = new ArrayList<>();
-    
+        
 }

@@ -1,0 +1,13 @@
+package com.cityStar.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cityStar.model.Availability;
+
+public interface IavailabilityRepository extends JpaRepository<Availability,Long>{
+    List<Availability> findByDoctorId(Long doctorId);
+    List<Availability> findByAvailableDate(LocalDate date);
+}
