@@ -1,6 +1,6 @@
 package com.cityStar.enums;
 public enum Role{
-    Admin,
-    Doctor,
+    ADMIN,
+    DOCTOR,
     Patient
 }
