@@ -41,12 +41,12 @@ public class AuthController {
 
         User user = userRepository.findByEmail(email).orElseThrow();
 
-        switch (user.getRole().toString()) {
-            case "Admin":
+        switch (user.getRole()) {
+            case Role.ADMIN:
                 return "redirect:/admin/dashboard";
-            case "Doctor":
+            case Role.DOCTOR:
                 return "redirect:/doctor/home";
-            case "Patient":
+            case Role.PATIENT:
                 return "redirect:/patient/home";
             default:
                 return "redirect:/";
