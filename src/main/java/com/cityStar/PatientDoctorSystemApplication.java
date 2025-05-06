@@ -1,5 +1,7 @@
 package com.cityStar;
 
+import java.util.logging.Logger;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +15,7 @@ import com.cityStar.repository.IuserRepository;
 @SpringBootApplication
 public class PatientDoctorSystemApplication {
 
+    private final Logger logger = Logger.getLogger(PatientDoctorSystemApplication.class.getName());
 	public static void main(String[] args) {
 		SpringApplication.run(PatientDoctorSystemApplication.class, args);
 	}
@@ -26,7 +29,7 @@ public class PatientDoctorSystemApplication {
                 admin.setPassword(passwordEncoder.encode("admin123"));  
                 admin.setRole(Role.ADMIN); 
                 userRepository.save(admin);
-                System.out.println("✅ Root Admin user created!");
+                logger.info("admin is created completely");
             }
         };
     }

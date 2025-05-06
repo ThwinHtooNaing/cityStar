@@ -4,6 +4,7 @@ import com.cityStar.model.Doctor;
 import com.cityStar.model.Patient;
 import com.cityStar.model.User;
 import com.cityStar.repository.IuserRepository;
+import com.cityStar.service.UserService;
 import com.cityStar.dto.DoctorDTO;
 import com.cityStar.dto.PatientDTO;
 import com.cityStar.enums.Role;
@@ -23,12 +24,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
+    private final UserService userService;
     private final IuserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthController(AuthenticationManager authenticationManager, IuserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthController(AuthenticationManager authenticationManager,
+                          IuserRepository userRepository, 
+                          PasswordEncoder passwordEncoder,
+                          UserService userService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
+        this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -88,7 +94,7 @@ public class AuthController {
         data.setContactInfo(doctor.getContactInfo());
         data.setSpeciality(doctor.getSpecialty());
         data.setProfilePath(doctor.getProfilePath());
-        userRepository.save(data);
+        userService.saveUser(data);
         return "redirect:/login";
     }
 
@@ -106,7 +112,7 @@ public class AuthController {
         data.setAge(patient.getAge());
         data.setRole(patient.getRole());
         data.setProfilePath(patient.getProfilePath());
-        userRepository.save(data);
+        userService.saveUser(data);
         return "redirect:/login";
     }
 
