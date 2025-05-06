@@ -5,9 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import jakarta.persistence.*;
-
-import org.springframework.lang.Nullable;
-
 import com.cityStar.enums.Role;
 
 @Entity
