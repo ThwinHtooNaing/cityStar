@@ -22,7 +22,7 @@ public class PatientDoctorSystemApplication {
         return args -> {
             if (userRepository.findByEmail("root@gmail.com").isEmpty()) {
                 Admin admin = new Admin();
-                admin.setEmail("root");
+                admin.setEmail("root@gmail.com");
                 admin.setPassword(passwordEncoder.encode("admin123"));  
                 admin.setRole(Role.ADMIN); 
                 userRepository.save(admin);
