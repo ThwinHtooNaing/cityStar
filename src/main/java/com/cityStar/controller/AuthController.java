@@ -18,22 +18,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final IuserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public AuthController(AuthenticationManager authenticationManager,
-                          IuserRepository userRepository, 
+    public AuthController(AuthenticationManager authenticationManager, 
                           PasswordEncoder passwordEncoder,
                           UserService userService) {
         this.authenticationManager = authenticationManager;
-        this.userRepository = userRepository;
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
@@ -52,7 +48,7 @@ public class AuthController {
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        User user = userRepository.findByEmail(email).orElseThrow();
+        User user = userService.findByEmail(email);
 
         switch (user.getRole()) {
             case Role.ADMIN:
@@ -93,7 +89,6 @@ public class AuthController {
         data.setBio(doctor.getBio());
         data.setContactInfo(doctor.getContactInfo());
         data.setSpeciality(doctor.getSpecialty());
-        data.setProfilePath(doctor.getProfilePath());
         userService.saveUser(data);
         return "redirect:/login";
     }

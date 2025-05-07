@@ -2,6 +2,7 @@ package com.cityStar.service;
 
 import org.springframework.stereotype.Service;
 
+import com.cityStar.exception.UserNotFoundException;
 import com.cityStar.model.User;
 import com.cityStar.repository.IuserRepository;
 
@@ -16,4 +17,9 @@ public class UserService {
     public void saveUser(User user){
         userRepository.save(user);
     }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElseThrow(()->new UserNotFoundException("User not found with email: " + email));
+    }
+    
 }

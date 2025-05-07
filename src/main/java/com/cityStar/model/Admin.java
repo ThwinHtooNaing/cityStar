@@ -10,5 +10,5 @@ import jakarta.persistence.*;
 @Setter
 @NoArgsConstructor
 public class Admin extends User {
-    // No extra fields needed
+    
 }
