@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Welcome to my page</h1>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="bg">
+        <div class="container">
+            <div class="title-container">
+                <div class="sub-title-container">
+                    <div class="icon">
+                        <i class='fas fa-heartbeat'></i>
+                    </div>
+                    <div class="header-container">
+                        <h1 class="logo-name">Welcome to City Star</h1>
+                        <h3>You need to log in to your account</h3>
+                        <h3>to access our services</h3>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <a class="btn register-btn" th:href="@{/auth/register}">Register Account</a>
+                </div>
+            </div>
+            <div class="form-container">
+                <div class="form">
+                    <h1 class="form-title">Log In</h1>
+                    <form th:action="@{/auth/login}" method="POST">
+                        <div class="form-group">
+                            <input type="email" th:name="email" placeholder="" class="form-control" aria-labelledby="placeholder-fname"  required value="">
+                            <label class="placeholder-text" for="fname" id="placeholder-fname">
+                                <div class="text">Email</div>
+                            </label>
+                            <!-- <p th:if="error.has"class="error-message">Error Message</p> -->
+                        </div>
+                        <div class="form-group">
+                            <input type="password" th:name="password" placeholder="" class="form-control" aria-labelledby="placeholder-fname"  required value="">
+                            <label class="placeholder-text" for="fname" id="placeholder-fname">
+                                <div class="text" >Password</div>
+                            </label>
+                            <span class="toggle-password">
+                                <i class="fas fa-eye eye-icon"></i>
+                            </span>
+                            <!-- <p class="error-message">Error Message</p> -->
+                        </div>    
+                        <input type="hidden" name="_csrf" value="${_csrf.token}"/>                          
+                        <div class="submit-btn-container">
+                            <button type="submit" class="login-btn btn">Submit</button>
+                        </div>
+                        <div class="link-container">
+                            <a href="javascrip:void(0)" class="form-link">forget your password ?</a>
+                        </div>           
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script th:src="@{/js/login.js}">
+</script>
 </html>

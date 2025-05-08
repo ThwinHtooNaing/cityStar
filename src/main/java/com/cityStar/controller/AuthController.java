@@ -3,8 +3,8 @@ package com.cityStar.controller;
 import com.cityStar.model.Doctor;
 import com.cityStar.model.Patient;
 import com.cityStar.model.User;
-import com.cityStar.repository.IuserRepository;
 import com.cityStar.service.UserService;
+
 import com.cityStar.dto.DoctorDTO;
 import com.cityStar.dto.PatientDTO;
 import com.cityStar.enums.Role;
@@ -15,8 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/auth")
@@ -47,11 +45,10 @@ public class AuthController {
         );
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
         User user = userService.findByEmail(email);
 
         switch (user.getRole()) {
-            case Role.ADMIN:
+            case Role.ADMIN:    
                 return "redirect:/admin/dashboard";
             case Role.DOCTOR:
                 return "redirect:/doctor/home";
@@ -62,14 +59,9 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/register/doctor")
+    @GetMapping("/register")
     public String registerDoctorPage() {
-        return "registerDoctor";
-    }
-
-    @GetMapping("/register/patient")
-    public String registerPatientPage() {
-        return "registerPatient";
+        return "register";
     }
 
     @PostMapping("/register/doctor")
