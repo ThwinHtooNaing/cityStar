@@ -14,13 +14,13 @@ import lombok.Setter;
 public class DoctorDTO extends UserDTO {
     private String bio;
     private String contactInfo;
-    private String specialty;
+    private String speciality;
     private List<AvailabilityDTO> availabilities;
 
-    public DoctorDTO(Long id,String firstName, String middleName, String lastName, String email, String password, String address, Integer age, Role role, String profilePath, String bio, String contactInfo, String specialty) {
+    public DoctorDTO(Long id,String firstName, String middleName, String lastName, String email, String password, String address, Integer age, Role role, String profilePath, String bio, String contactInfo, String speciality) {
         super(id,firstName, middleName, lastName, email, password, address, age, role, profilePath);
         this.bio = bio;
         this.contactInfo = contactInfo;
-        this.specialty = specialty;
+        this.speciality = speciality;
     }
 }

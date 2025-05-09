@@ -3,6 +3,8 @@ package com.cityStar.controller;
 import com.cityStar.model.Doctor;
 import com.cityStar.model.Patient;
 import com.cityStar.model.User;
+import com.cityStar.rowmapper.DoctorRowMapper;
+import com.cityStar.rowmapper.PatientRowMapper;
 import com.cityStar.service.UserService;
 
 import com.cityStar.dto.DoctorDTO;
@@ -56,7 +58,7 @@ public class AuthController {
                 case Role.ADMIN:    
                     return "redirect:/admin/dashboard";
                 case Role.DOCTOR:
-                    return "redirect:/doctor/home";
+                    return "redirect:/doctor/dashboard";
                 case Role.PATIENT:
                     return "redirect:/patient/home";
                 default:
@@ -81,42 +83,21 @@ public class AuthController {
     }
 
     @PostMapping("/register/doctor")
-    public String registerDoctor(@RequestBody DoctorDTO doctor) {
+    public String registerDoctor(@ModelAttribute DoctorDTO doctor) {
         doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         doctor.setRole(Role.DOCTOR);
-        Doctor data = new Doctor();
-        data.setFirstName(doctor.getFirstName());
-        data.setMiddleName(doctor.getMiddleName());
-        data.setLastName(doctor.getLastName());
-        data.setEmail(doctor.getEmail());
-        data.setPassword(doctor.getPassword());
-        data.setAddress(doctor.getAddress());
-        data.setAge(doctor.getAge());
-        data.setRole(doctor.getRole());
-        data.setProfilePath(doctor.getProfilePath());
-        data.setBio(doctor.getBio());
-        data.setContactInfo(doctor.getContactInfo());
-        data.setSpeciality(doctor.getSpecialty());
+        Doctor data = DoctorRowMapper.toEntity(doctor);
         userService.saveUser(data);
-        return "redirect:/login";
+        return "redirect:/auth/login";
     }
 
     @PostMapping("/register/patient")
-    public String registerPatient(@RequestBody PatientDTO patient) {
+    public String registerPatient(@ModelAttribute PatientDTO patient) {
         patient.setPassword(passwordEncoder.encode(patient.getPassword()));
         patient.setRole(Role.PATIENT);
-        Patient data = new Patient();
-        data.setFirstName(patient.getFirstName());
-        data.setMiddleName(patient.getMiddleName());
-        data.setLastName(patient.getLastName());
-        data.setEmail(patient.getEmail());
-        data.setPassword(patient.getPassword());
-        data.setAddress(patient.getAddress());
-        data.setAge(patient.getAge());
-        data.setRole(patient.getRole());
-        data.setProfilePath(patient.getProfilePath());
+        Patient data = PatientRowMapper.toEntity(patient);
         userService.saveUser(data);
-        return "redirect:/login";
+        return "redirect:/auth/login";
     }
 
 }

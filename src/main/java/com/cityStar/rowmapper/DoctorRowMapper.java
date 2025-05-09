@@ -20,7 +20,7 @@ public class DoctorRowMapper {
         doctor.setProfilePath(dto.getProfilePath());
         doctor.setBio(dto.getBio());
         doctor.setContactInfo(dto.getContactInfo());
-        doctor.setSpeciality(dto.getSpecialty());
+        doctor.setSpeciality(dto.getSpeciality());
         return doctor;
     }
 }
