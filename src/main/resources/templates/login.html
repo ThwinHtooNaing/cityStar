@@ -35,7 +35,7 @@
                             <label class="placeholder-text" for="fname" id="placeholder-fname">
                                 <div class="text">Email</div>
                             </label>
-                            <!-- <p th:if="error.has"class="error-message">Error Message</p> -->
+                            <p th:if="${user_error}" class="error-message" th:text="${user_error}">Error Message</p>
                         </div>
                         <div class="form-group">
                             <input type="password" th:name="password" placeholder="" class="form-control" aria-labelledby="placeholder-fname"  required value="">
@@ -45,7 +45,7 @@
                             <span class="toggle-password">
                                 <i class="fas fa-eye eye-icon"></i>
                             </span>
-                            <!-- <p class="error-message">Error Message</p> -->
+                            <p th:if="${password_error}" class="error-message" th:text="${password_error}">Error Message</p>
                         </div>    
                         <input type="hidden" name="_csrf" value="${_csrf.token}"/>                          
                         <div class="submit-btn-container">

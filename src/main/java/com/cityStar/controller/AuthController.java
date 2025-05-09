@@ -9,12 +9,15 @@ import com.cityStar.dto.DoctorDTO;
 import com.cityStar.dto.PatientDTO;
 import com.cityStar.enums.Role;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/auth")
@@ -39,23 +42,36 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestParam String email,
-                        @RequestParam String password) {
-        Authentication authentication = authenticationManager.authenticate(
+                        @RequestParam String password,
+                        RedirectAttributes redirectAttributes) {
+        try{
+            Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(email, password)
-        );
-        
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        User user = userService.findByEmail(email);
+            );
+            
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            User user = userService.findByEmail(email);
 
-        switch (user.getRole()) {
-            case Role.ADMIN:    
-                return "redirect:/admin/dashboard";
-            case Role.DOCTOR:
-                return "redirect:/doctor/home";
-            case Role.PATIENT:
-                return "redirect:/patient/home";
-            default:
-                return "redirect:/";
+            switch (user.getRole()) {
+                case Role.ADMIN:    
+                    return "redirect:/admin/dashboard";
+                case Role.DOCTOR:
+                    return "redirect:/doctor/home";
+                case Role.PATIENT:
+                    return "redirect:/patient/home";
+                default:
+                    return "redirect:/";
+            }
+        }catch (UsernameNotFoundException e) {
+            System.out.println("user not found");
+            redirectAttributes.addFlashAttribute("user_error", "User not found");
+            return "redirect:/auth/login";
+        } catch (BadCredentialsException e) {
+            System.out.println("Incorrect password");
+            redirectAttributes.addFlashAttribute("password_error", "Incorrect password");
+            return "redirect:/auth/login";
+        } catch(Exception e) {
+            return "redirect:/auth/login";
         }
     }
 
