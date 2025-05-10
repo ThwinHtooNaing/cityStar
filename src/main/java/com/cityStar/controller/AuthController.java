@@ -62,7 +62,7 @@ public class AuthController {
                 case Role.PATIENT:
                     return "redirect:/patient/home";
                 default:
-                    return "redirect:/";
+                    return "redirect:/auth/login";
             }
         }catch (UsernameNotFoundException e) {
             System.out.println("user not found");
