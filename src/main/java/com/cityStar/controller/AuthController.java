@@ -16,7 +16,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -27,14 +26,11 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
     public AuthController(AuthenticationManager authenticationManager, 
-                          PasswordEncoder passwordEncoder,
                           UserService userService) {
         this.authenticationManager = authenticationManager;
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("/login")
@@ -84,7 +80,6 @@ public class AuthController {
 
     @PostMapping("/register/doctor")
     public String registerDoctor(@ModelAttribute DoctorDTO doctor) {
-        doctor.setPassword(passwordEncoder.encode(doctor.getPassword()));
         doctor.setRole(Role.DOCTOR);
         Doctor data = DoctorRowMapper.toEntity(doctor);
         userService.saveUser(data);
@@ -93,7 +88,6 @@ public class AuthController {
 
     @PostMapping("/register/patient")
     public String registerPatient(@ModelAttribute PatientDTO patient) {
-        patient.setPassword(passwordEncoder.encode(patient.getPassword()));
         patient.setRole(Role.PATIENT);
         Patient data = PatientRowMapper.toEntity(patient);
         userService.saveUser(data);
