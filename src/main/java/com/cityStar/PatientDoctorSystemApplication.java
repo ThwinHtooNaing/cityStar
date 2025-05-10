@@ -25,6 +25,8 @@ public class PatientDoctorSystemApplication {
         return args -> {
             if (userRepository.findByEmail("root@gmail.com").isEmpty()) {
                 Admin admin = new Admin();
+                admin.setFirstName("admin");
+                admin.setProfilePath("/img/default_profile_photo.jpg");
                 admin.setEmail("root@gmail.com");
                 admin.setPassword(passwordEncoder.encode("admin123"));  
                 admin.setRole(Role.ADMIN); 

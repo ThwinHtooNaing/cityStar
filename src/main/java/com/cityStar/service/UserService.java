@@ -20,11 +20,11 @@ public class UserService {
 
     public void saveUser(User user){
         boolean isUserExit = userRepository.findByEmail(user.getEmail()).isPresent();
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if (user.getProfilePath() == null || user.getProfilePath().isEmpty()) {
-            user.setProfilePath("/img/default_profile_photo.jpg"); // Relative 
-        }
         if(!isUserExit){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            if (user.getProfilePath() == null || user.getProfilePath().isEmpty()) {
+                user.setProfilePath("/img/default_profile_photo.jpg"); 
+            }
             userRepository.save(user);
         }else{
             throw new EmailDuplicationException("this emails does exists");

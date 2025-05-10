@@ -46,39 +46,39 @@
                         </div>
                     </div>
                     <div class="form-body-container">
-                        <form th:action="@{/auth/register/doctor}" method="POST" id="doctor_form">
+                        <form th:action="@{/auth/register/doctor}" method="POST" id="doctor_form" th:object="${doctor}">
                             <div class="form-body-input-container">
                                 <div class="form-group-column1">
                                     <div class="form-group">
-                                        <input type="text" th:name="firstName" placeholder="" class="form-control" aria-labelledby="placeholder-firstName"  required value="">
+                                        <input type="text" placeholder="" class="form-control" aria-labelledby="placeholder-firstName"  required value="" th:field="*{firstName}">
                                         <label class="placeholder-text" for="firstName" id="placeholder-firstName">
                                             <div class="text">First Name</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:name="lastName" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="">
+                                        <input type="text" th:field="*{lastName}" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required>
                                         <label class="placeholder-text" for="lastName" id="placeholder-lastName">
                                             <div class="text">Last Name</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" th:name="age" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required value="" min="1">
+                                        <input type="number" th:field="*{age}" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required min="1">
                                         <label class="placeholder-text" for="age" id="placeholder-age">
                                             <div class="text">Age</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" th:name="password" placeholder="" class="form-control" aria-labelledby="placeholder-password"  required value="">
+                                        <input type="password" th:field="*{password}" placeholder="" class="form-control" aria-labelledby="placeholder-password" required value="${doctor.password}">
                                         <label class="placeholder-text" for="password" id="placeholder-password">
                                             <div class="text" >Password</div>
                                         </label>
                                         <span class="toggle-password">
                                             <i class="fas fa-eye eye-icon"></i>
                                         </span>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
                                     </div>  
                                     <div class="form-group">
                                         <input type="password" name="cpassword" placeholder="" class="form-control" aria-labelledby="placeholder-cpassword"  required value="">
@@ -88,40 +88,41 @@
                                         <span class="toggle-password">
                                             <i class="fas fa-eye eye-icon"></i>
                                         </span>
-                                        <p class="error-message">Error Message</p>
+                                        <!-- <p class="error-message">Error Message</p> -->
                                     </div>       
                                 </div>   
                                 <div class="form-group-column2">
                                     <div class="form-group">
-                                        <input type="Email" th:name="email" placeholder="" class="form-control" aria-labelledby="placeholder-email"  required value="">
+                                        <input type="email" th:field="*{email}" placeholder="" class="form-control" aria-labelledby="placeholder-email"  required autocomplete="on">
                                         <label class="placeholder-text" for="email" id="placeholder-email">
                                             <div class="text">Email</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></p>
+                                        <p th:if="${email_error}" th:text="${email_error}"class="error-message">Error Message</p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:name="address" placeholder="" class="form-control" aria-labelledby="placeholder-address"  required value="">
+                                        <input type="text" th:field="*{address}" placeholder="" class="form-control" aria-labelledby="placeholder-address"  required value="" autocomplete="on">
                                         <label class="placeholder-text" for="address" id="placeholder-address">
                                             <div class="text">Address</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
                                         <input type="text" th:name="contactInfo" placeholder="" class="form-control" aria-labelledby="placeholder-contactInfo"  required value="">
                                         <label class="placeholder-text" for="contactInfo" id="placeholder-contactInfo">
                                             <div class="text" >Contact Info</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <!-- <p class="error-message">Error Message</p> -->
                                     </div>  
                                     <div class="form-group">
-                                        <input type="text" th:name="speciality" placeholder="" class="form-control" aria-labelledby="placeholder-speciality"  required value="">
-                                        <label class="placeholder-text" for="speciality" id="placeholder-speciality">
+                                        <input type="text" th:filed="*{speciality}" placeholder="" class="form-control" aria-labelledby="placeholder-speciality" id="speciality" required value="">
+                                        <label class="placeholder-text" for="speciality">
                                             <div class="text">Speciality</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <!-- <p class="error-message">Error Message</p> -->
                                     </div> 
                                     <div class="form-group" style="opacity: 0;">
-                                        <input type="text" name="lastName" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="">
+                                        <input type="text" name="hiddenLastName" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="">
                                         <label class="placeholder-text" for="lastName" id="placeholder-lastName">
                                             <div class="text">Last Name</div>
                                         </label>
@@ -131,39 +132,39 @@
                                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>     
                             </div>
                         </form>
-                        <form th:action="@{/auth/register/patient}" method="POST" id="patient_form" style="display: none;">
+                        <form th:action="@{/auth/register/patient}" method="POST" id="patient_form" style="display: none;" th:object="${patient}">
                             <div class="form-body-input-container">
                                 <div class="form-group-column1">
                                     <div class="form-group">
-                                        <input type="text" th:name="firstName" placeholder="" class="form-control" aria-labelledby="placeholder-firstName"  required value="">
+                                        <input type="text" th:field="*{firstName}" placeholder="" class="form-control" aria-labelledby="placeholder-firstName"  required value="" id="fName">
                                         <label class="placeholder-text" for="firstName" id="placeholder-firstName">
                                             <div class="text">First Name</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:name="lastName" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="">
+                                        <input type="text" th:field="*{lastName}" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="" id="lName">
                                         <label class="placeholder-text" for="lastName" id="placeholder-lastName">
                                             <div class="text">Last Name</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" th:name="age" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required value="" min="1">
+                                        <input type="number" th:field="*{age}" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required value="" min="1" id="pAge">
                                         <label class="placeholder-text" for="age" id="placeholder-age">
                                             <div class="text">Age</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" th:name="password" placeholder="" class="form-control" aria-labelledby="placeholder-password"  required value="">
+                                        <input type="password" th:field="*{password}" placeholder="" class="form-control" aria-labelledby="placeholder-password"  required value="" id="ppassword">
                                         <label class="placeholder-text" for="password" id="placeholder-password">
                                             <div class="text" >Password</div>
                                         </label>
                                         <span class="toggle-password">
                                             <i class="fas fa-eye eye-icon"></i>
                                         </span>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></p>
                                     </div>  
                                     <div class="form-group">
                                         <input type="password" name="cpassword" placeholder="" class="form-control" aria-labelledby="placeholder-cpassword"  required value="">
@@ -173,23 +174,24 @@
                                         <span class="toggle-password">
                                             <i class="fas fa-eye eye-icon"></i>
                                         </span>
-                                        <p class="error-message">Error Message</p>
+                                        <!-- <p class="error-message">Error Message</p> -->
                                     </div>       
                                 </div>   
                                 <div class="form-group-column2">
                                     <div class="form-group">
-                                        <input type="Email" th:name="email" placeholder="" class="form-control" aria-labelledby="placeholder-email"  required value="">
+                                        <input type="email" th:field="*{email}" placeholder="" class="form-control" aria-labelledby="placeholder-email"  required id="pEmail">
                                         <label class="placeholder-text" for="email" id="placeholder-email">
                                             <div class="text">Email</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></p>
+                                        <p th:if="${email_error}" class="error-message" th:text="${email_error}"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:name="address" placeholder="" class="form-control" aria-labelledby="placeholder-address"  required value="">
+                                        <input type="text" th:field="*{address}" placeholder="" class="form-control" aria-labelledby="placeholder-address"  required value="" id="pAddress">
                                         <label class="placeholder-text" for="address" id="placeholder-address">
                                             <div class="text">Address</div>
                                         </label>
-                                        <p class="error-message">Error Message</p>
+                                        <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error-message"></p>
                                     </div>
                                     <div class="form-group" style="opacity: 0;">
                                         <input type="text" name="contactInfo" placeholder="" class="form-control" aria-labelledby="placeholder-contactInfo"  required value="">
@@ -206,7 +208,7 @@
                                         <p class="error-message">Error Message</p>
                                     </div> 
                                     <div class="form-group" style="opacity: 0;">
-                                        <input type="number" name="age" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required value="1" min="1">
+                                        <input type="number" name="hiddenAge" placeholder="" class="form-control" aria-labelledby="placeholder-age"  required value="1" min="1">
                                         <label class="placeholder-text" for="age" id="placeholder-age">
                                             <div class="text">Age</div>
                                         </label>
