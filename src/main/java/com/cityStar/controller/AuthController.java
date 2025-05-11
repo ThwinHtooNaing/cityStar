@@ -69,11 +69,9 @@ public class AuthController {
                     return "redirect:/auth/login";
             }
         }catch (UsernameNotFoundException e) {
-            System.out.println("user not found");
             redirectAttributes.addFlashAttribute("user_error", "User not found");
             return "login";
         } catch (BadCredentialsException e) {
-            System.out.println("Incorrect password");
             redirectAttributes.addFlashAttribute("password_error", "Incorrect password");
             return "login";
         } catch(Exception e) {
