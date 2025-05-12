@@ -23,4 +23,8 @@ public class DoctorDTO extends UserDTO {
         this.contactInfo = contactInfo;
         this.speciality = speciality;
     }
+
+    public DoctorDTO(String firstName,String lastName,String profilePath){
+        super(firstName,lastName,profilePath);
+    }
 }

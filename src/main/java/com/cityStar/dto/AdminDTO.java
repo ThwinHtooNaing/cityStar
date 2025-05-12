@@ -8,5 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class AdminDTO extends UserDTO {
-    
+    public AdminDTO(String firstName,String lastName,String profilePath){
+        super(firstName,lastName,profilePath);
+    }
 }

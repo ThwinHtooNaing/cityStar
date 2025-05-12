@@ -18,4 +18,8 @@ public class PatientDTO extends UserDTO {
     public PatientDTO(Long id,String firstName, String middleName, String lastName, String email, String password, String address, Integer age, Role role, String profilePath) {
         super(id,firstName, middleName, lastName, email, password, address, age, role, profilePath);
     }
+
+    public PatientDTO(String firstName,String lastName,String profilePath){
+        super(firstName,lastName,profilePath);
+    }
 }

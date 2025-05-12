@@ -52,4 +52,10 @@ public class UserDTO {
     private Role role;
 
     private String profilePath;
+
+    public UserDTO(String firstName,String lastName,String profilePath){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profilePath = profilePath;
+    }
 }
