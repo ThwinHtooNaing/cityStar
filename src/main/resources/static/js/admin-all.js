@@ -10,3 +10,9 @@ document.querySelector(".profile-image .img").addEventListener("click",function(
     const link = "/admin/profile";
     window.location.href = link;
 })
+document
+  .querySelector(".toggler-container")
+  .addEventListener("click", function () {
+    const aside = document.querySelector(".aside");
+    aside.classList.toggle("collapsed");
+  });

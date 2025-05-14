@@ -169,7 +169,7 @@
     border: 1px solid gray;
 }
 .aside.collapsed{
-    width: 60px;
+    width: 90px;
 }
 .aside.collapsed .website-title{
     display: none;
