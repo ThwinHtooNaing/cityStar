@@ -1,0 +1,12 @@
+document.querySelectorAll(".nav-link").forEach((item) => {
+  item.addEventListener("click", function () {
+    const link = this.querySelector("a");
+    if (link) {
+      window.location.href = link.href;
+    }
+  });
+});
+document.querySelector(".profile-image .img").addEventListener("click",function(){
+    const link = "/admin/profile";
+    window.location.href = link;
+})

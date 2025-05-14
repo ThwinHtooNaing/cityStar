@@ -21,6 +21,30 @@ public class AdminController {
         return "admin/admin-dashboard";
     }
 
+    @GetMapping("/profile")
+    public String Profile(@AuthenticationPrincipal CustomUserDetails user,
+                            Model model) {
+        AdminDTO admin = getAdmin(user);
+        model.addAttribute("current_user", admin);
+        return "admin/admin-profile";
+    }
+
+    @GetMapping("/users")
+    public String Users(@AuthenticationPrincipal CustomUserDetails user,
+                            Model model) {
+        AdminDTO admin = getAdmin(user);
+        model.addAttribute("current_user", admin);
+        return "admin/admin-users";
+    }
+
+    @GetMapping("/appointments")
+    public String Appointments(@AuthenticationPrincipal CustomUserDetails user,
+                            Model model) {
+        AdminDTO admin = getAdmin(user);
+        model.addAttribute("current_user", admin);
+        return "admin/admin-appointments";
+    }
+
     private AdminDTO getAdmin(CustomUserDetails user){
         return new AdminDTO(user.getFirstName(), user.getLastName(), user.getProfilePath());
         

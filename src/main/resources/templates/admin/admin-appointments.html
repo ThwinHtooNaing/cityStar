@@ -7,7 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/admin-appointments.css}">
     <link rel="stylesheet" th:href="@{/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/admin-all.css}">
-    <link rel="stylesheet" th:href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,19 +25,19 @@
                 <ul class="nav-li-container">
                     <li class="nav-link">
                         <i class="fas fa-tachometer-alt"></i>
-                        <a>Dashboard</a>
+                        <a th:href="@{/admin/dashboard}">Dashboard</a>
                     </li>
                     <li class="nav-link">
                         <i class="fas fa-users"></i>
-                        <a>Users</a>
+                        <a th:href="@{/admin/users}">Users</a>
                     </li>
                     <li class="nav-link active">
                         <i class="fas fa-calendar-alt"></i>
-                        <a>Appointments</a>
+                        <a th:href="@{/admin/appointments}">Appointments</a>
                     </li>
                     <li class="nav-link bottom-link">
                         <i class="fas fa-sign-out-alt bottom link"></i>
-                        <a>Logout</a>
+                        <a th:href="@{/admin/logout}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -73,5 +73,6 @@
         </div>
     </div>
 </body>
-<script th:src="/js/admin-appointments.js"></script>
+<script th:src="@{/js/admin-appointments.js}"></script>
+<script th:src="@{/js/admin-all.js}"></script>
 </html>

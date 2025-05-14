@@ -5,7 +5,7 @@
     display: flex;
 }
 .home-panel{
-    flex: 83%;
+    flex: 1;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,7 @@
 .profile-name > p{
     font-family: 'Poppins', sans-serif;
     font-weight: 200px;
-    font-size: 14px;
+    font-size: 16px;
     color: var(--primary-color);
 }
 .toggler-container{
@@ -71,7 +71,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--primary-color);
-    flex: 17%;
+    width: 220px;
     border-radius: 0px 10px 10px 0px;
     height: 100vh;
 }
@@ -91,10 +91,10 @@
     margin-bottom: 15px;
 }
 .website-title{
-    font-size: 23px;
+    font-size: 25px;
 }
 .website-icon{
-    font-size: 25px;
+    font-size: 28px;
 }
 .nav-container{
     width: inherit;
@@ -131,14 +131,15 @@
     color: var(--primary-color);
 }
 .nav-link > i{
-    font-size: 18px;
+    font-size: 20px;
 }
-.nav-link > p{
+.nav-link > a{
+    font-size: 16px;
     font-weight: 100;
 }
 .material-container{
     display: flex;
-    gap: 15px;
+    gap: 5px;
     align-items: center;
 }
 .profile-container{
@@ -166,4 +167,13 @@
     border: none;
     border-radius: 50%;
     border: 1px solid gray;
+}
+.aside.collapsed{
+    width: 60px;
+}
+.aside.collapsed .website-title{
+    display: none;
+}
+.aside.collapsed .nav-link a{
+    display: none;
 }

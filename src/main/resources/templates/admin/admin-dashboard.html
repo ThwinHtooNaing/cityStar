@@ -25,19 +25,19 @@
                 <ul class="nav-li-container">
                     <li class="nav-link active">
                         <i class="fas fa-tachometer-alt"></i>
-                        <a>Dashboard</a>
+                        <a th:href="@{/admin/dashboard}">Dashboard</a>
                     </li>
                     <li class="nav-link">
                         <i class="fas fa-users"></i>
-                        <a>Users</a>
+                        <a th:href="@{/admin/users}">Users</a>
                     </li>
                     <li class="nav-link">
                         <i class="fas fa-calendar-alt"></i>
-                        <a>Appointments</a>
+                        <a th:href="@{/admin/appointments}">Appointments</a>
                     </li>
                     <li class="nav-link bottom-link">
                         <i class="fas fa-sign-out-alt bottom link"></i>
-                        <a>Logout</a>
+                        <a th:href="@{/admin/logout}">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -62,7 +62,7 @@
                             <p th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</p>
                         </div>                        
                         <div class="profile-image">
-                            <img class="" alt="" th:src="${current_user.profilePath}">
+                            <img class="img" alt="" th:src="${current_user.profilePath}">
                         </div>
                     </div>
                 </div>
@@ -74,4 +74,5 @@
     </div>
 </body>
 <script th:src="@{/js/admin-dashboard.js}"></script>
+<script th:src="@{/js/admin-all.js}"></script>
 </html>
