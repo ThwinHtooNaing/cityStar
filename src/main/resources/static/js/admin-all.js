@@ -6,13 +6,20 @@ document.querySelectorAll(".nav-link").forEach((item) => {
     }
   });
 });
-document.querySelector(".profile-image .img").addEventListener("click",function(){
-    const link = "/admin/profile";
-    window.location.href = link;
-})
-document
-  .querySelector(".toggler-container")
-  .addEventListener("click", function () {
-    const aside = document.querySelector(".aside");
-    aside.classList.toggle("collapsed");
+
+const profileImage = document.querySelector(".profile-image .img");
+if (profileImage) {
+  profileImage.addEventListener("click", function () {
+    window.location.href = "/admin/profile";
   });
+}
+
+const toggler = document.querySelector(".toggler-container");
+if (toggler) {
+  toggler.addEventListener("click", function () {
+    const aside = document.querySelector(".aside");
+    if (aside) {
+      aside.classList.toggle("collapsed");
+    }
+  });
+}
