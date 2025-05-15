@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cityStar.enums.Role;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DoctorDTO extends UserDTO {
     private String bio;
+
+    @NotBlank
     private String contactInfo;
+
+    @NotBlank
     private String speciality;
     private List<AvailabilityDTO> availabilities;
 

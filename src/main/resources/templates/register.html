@@ -112,14 +112,14 @@
                                         <label class="placeholder-text" for="contactInfo" id="placeholder-contactInfo">
                                             <div class="text" >Contact Info</div>
                                         </label>
-                                        <!-- <p class="error-message">Error Message</p> -->
+                                        <p th:if="${#fields.hasErrors('contactInfo')}" th:errors="*{contactInfo}" class="error-message"></p>
                                     </div>  
                                     <div class="form-group">
                                         <input type="text" th:filed="*{speciality}" placeholder="" class="form-control" aria-labelledby="placeholder-speciality" id="speciality" required value="">
                                         <label class="placeholder-text" for="speciality">
                                             <div class="text">Speciality</div>
                                         </label>
-                                        <!-- <p class="error-message">Error Message</p> -->
+                                        <p th:if="${#fields.hasErrors('speciality')}" th:errors="*{speciality}" class="error-message"></p>
                                     </div> 
                                     <div class="form-group" style="opacity: 0;">
                                         <input type="text" name="hiddenLastName" placeholder="" class="form-control" aria-labelledby="placeholder-lastName"  required value="">
