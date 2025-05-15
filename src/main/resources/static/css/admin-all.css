@@ -7,6 +7,7 @@
 .home-panel{
     flex: 1;
     border-radius: 10px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -169,7 +170,7 @@
     border: 1px solid gray;
 }
 .aside.collapsed{
-    width: 90px;
+    width: auto;
 }
 .aside.collapsed .website-title{
     display: none;

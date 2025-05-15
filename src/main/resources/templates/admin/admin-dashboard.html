@@ -68,11 +68,112 @@
                 </div>
             </nav>
             <main class="main">
+                <h1 class="welcome-message">Welcome, <span th:text="${current_user.firstName + ' '+(current_user.lastName != null ? current_user.lastName : '')}"></span></h1>
+                <div class="all-statics-container">
+                    <div class="cards-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="icon-container">
+                                    <div class="icon-box">
+                                        <i class="icon">📅</i>
+                                    </div>
+                                </div>
+                                <div class="statics-box">
+                                    <p class="statics-label">Appointments</p>
+                                    <p class="statics-count">650</p>
+                                </div>
+                            </div>
+                            <div class="card-pic"></div>
+                        </div>
+                        <div class="card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                            <div class="icon-box">
+                                <i class="icon">🔧</i>
+                            </div>
+                            </div>
+                            <div class="statics-box">
+                            <p class="statics-label">Operations</p>
+                            <p class="statics-count">54</p>
+                            </div>
+                        </div>
+                        <div class="card-pic"></div>
+                        </div>
+                    
+                        <div class="card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                            <div class="icon-box">
+                                <i class="icon">👥</i>
+                            </div>
+                            </div>
+                            <div class="statics-box">
+                            <p class="statics-label">New Patients</p>
+                            <p class="statics-count">129</p>
+                            </div>
+                        </div>
+                        <div class="card-pic"></div>
+                        </div>
+                    
+                        <div class="card">
+                        <div class="card-header">
+                            <div class="icon-container">
+                            <div class="icon-box">
+                                <i class="icon">❌</i>
+                            </div>
+                            </div>
+                            <div class="statics-box">
+                            <p class="statics-label">Canceled</p>
+                            <p class="statics-count">12</p>
+                            </div>
+                        </div>
+                            <div id="chart" class="mt-4"></div>
+                        </div>
+                    </div>
+                    <div class="graph-container">
 
+                    </div>
+                    <div class="table-container">
+
+                    </div>
+                </div>
             </main>
         </div>
     </div>
 </body>
 <script th:src="@{/js/admin-dashboard.js}"></script>
 <script th:src="@{/js/admin-all.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    var options = {
+      chart: {
+        type: 'area',
+        height: 100,
+        sparkline: { enabled: true }
+      },
+      series: [{
+        data: [400, 430, 450, 420, 460, 480, 500, 470, 490, 650]
+      }],
+      fill: {
+        type: "gradient",
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.2,
+          stops: [0, 90, 100]
+        }
+      },
+      stroke: {
+        curve: 'smooth',
+        width: 2,
+        colors: ['#e31227']
+      },
+      tooltip: {
+        enabled: false
+      }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
 </html>
