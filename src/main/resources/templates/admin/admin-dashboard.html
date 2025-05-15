@@ -73,7 +73,7 @@
                     <div class="cards-container">
                         <div class="card">
                             <div class="card-header">
-                                <div class="icon-container">
+                                <div class="icon-container icon-pending">
                                     <div class="icon-box">
                                         <i class="icon">📅</i>
                                     </div>
@@ -83,11 +83,11 @@
                                     <p class="statics-count">650</p>
                                 </div>
                             </div>
-                            <div class="card-pic"></div>
+                            <div id="card-pic-1" class="mt-4"></div>
                         </div>
                         <div class="card">
                         <div class="card-header">
-                            <div class="icon-container">
+                            <div class="icon-container icon-confirmed">
                             <div class="icon-box">
                                 <i class="icon">🔧</i>
                             </div>
@@ -97,12 +97,12 @@
                             <p class="statics-count">54</p>
                             </div>
                         </div>
-                        <div class="card-pic"></div>
+                            <div id="card-pic-2" class="mt-4"></div>
                         </div>
                     
                         <div class="card">
                         <div class="card-header">
-                            <div class="icon-container">
+                            <div class="icon-container icon-newpatients">
                             <div class="icon-box">
                                 <i class="icon">👥</i>
                             </div>
@@ -112,12 +112,12 @@
                             <p class="statics-count">129</p>
                             </div>
                         </div>
-                        <div class="card-pic"></div>
+                            <div id="card-pic-3" class="mt-4"></div>
                         </div>
                     
                         <div class="card">
                         <div class="card-header">
-                            <div class="icon-container">
+                            <div class="icon-container icon-canceled">
                             <div class="icon-box">
                                 <i class="icon">❌</i>
                             </div>
@@ -127,7 +127,7 @@
                             <p class="statics-count">12</p>
                             </div>
                         </div>
-                            <div id="chart" class="mt-4"></div>
+                            <div id="card-pic-4" class="mt-4"></div>
                         </div>
                     </div>
                     <div class="graph-container">
@@ -145,35 +145,55 @@
 <script th:src="@{/js/admin-all.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
-    var options = {
-      chart: {
-        type: 'area',
-        height: 100,
-        sparkline: { enabled: true }
-      },
-      series: [{
-        data: [400, 430, 450, 420, 460, 480, 500, 470, 490, 650]
-      }],
-      fill: {
-        type: "gradient",
-        gradient: {
-          shadeIntensity: 1,
-          opacityFrom: 0.7,
-          opacityTo: 0.2,
-          stops: [0, 90, 100]
-        }
-      },
-      stroke: {
-        curve: 'smooth',
-        width: 2,
-        colors: ['#e31227']
-      },
-      tooltip: {
-        enabled: false
-      }
-    };
+    const chartColors = ['#007bff', '#28a745', '#ffc107', '#dc3545'];
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-  </script>
+    const chartData = [
+        [10, 12, 9, 15, 18, 10, 8, 12, 11, 12],
+        [10, 12, 9, 15, 18, 10, 8, 12, 11, 12],
+        [10, 12, 9, 15, 18, 10, 8, 12, 11, 12],
+        [10, 12, 9, 15, 18, 10, 8, 12, 11, 12]
+    ];
+    const gradientColors = [
+        ['#007bff', '#80bdff'],
+        ['#28a745', '#7de57f'],
+        ['#ffc107', '#ffe475'],
+        ['#dc3545', '#f06a75']
+    ];
+
+    const chartContainers = ['#card-pic-1', '#card-pic-2', '#card-pic-3', '#card-pic-4'];
+
+    chartContainers.forEach((selector, index) => {
+        var options = {
+            chart: {
+                type: 'area',
+                height: 100,
+                sparkline: { enabled: true }
+            },
+            series: [{ data: chartData[index] }],
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    shadeIntensity: 1,
+                    opacityFrom: 0.7,
+                    opacityTo: 0.2,
+                    colorStops: [
+                        { offset: 0, color: gradientColors[index][0], opacity: 0.7 },
+                        { offset: 100, color: gradientColors[index][1], opacity: 0.2 }
+                    ]
+                }
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 2,
+                colors: [chartColors[index]]
+            },
+            tooltip: {
+                enabled: false
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector(selector), options);
+        chart.render();
+    });
+</script>
 </html>
