@@ -11,6 +11,7 @@
     padding: 10px 20px;
     background-color: #f8f9fa; 
     border-bottom: 1px solid #ddd;
+    border-radius: 15px 15px 0 0 ;
 }
 
 .user-container-header h2 {
@@ -90,11 +91,17 @@
     margin-right: 15px;
     object-fit: cover;
     background-color: #e9ecef;
+    flex-shrink: 0;
 }
 
 .user-data {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    overflow-x:hidden;
     display: flex;
     flex-direction: column;
+    
 }
 
 .user-data p {
