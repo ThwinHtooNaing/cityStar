@@ -68,7 +68,25 @@
                 </div>
             </nav>
             <main class="main">
-
+                <div class="user-container-header">
+                    <h2>User Management</h2>
+                    <div class="user-container-header-icons">
+                        <div class="user-container-header-grid-view">
+                            <p>grid view</p>
+                            <i class="fi fi-ss-grid"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-container-grid" id="user-container-grid">
+                    <!-- <div th:each="user : ${users}" class="user-card" th:data-role="${user.role.roleName}">
+                        <img class="user-photo" th:src="${user.profilePic}" alt="User Photo">
+                        <div class="user-data">
+                            <p class="user-name" th:text="${user.firstName} + ' ' + ${user.lastName}"></p>
+                            <p class="user-gmail" th:text="${user.email}"></p>
+                            <p class="user-role" th:text="${user.role.roleName}"></p>
+                        </div>
+                    </div> -->
+                </div>
             </main>
         </div>
     </div>
