@@ -111,40 +111,37 @@
 
 /* Border colors for roles */
 .user-card[data-role="admin"] {
-    border-left: 4px solid #ff6f61; /* Red for admin */
+    border-left: 4px solid #ff6f61; 
 }
 
 .user-card[data-role="user"] {
-    border-left: 4px solid #007bff; /* Blue for customer */
+    border-left: 4px solid #007bff; 
 }
 
 .user-card[data-role="shopowner"] {
-    border-left: 4px solid #28a745; /* Green for shop owner */
+    border-left: 4px solid #28a745; 
 }
 
 .user-card[data-role="delivery"] {
-    border-left: 4px solid #ffc107; /* Yellow for delivery */
+    border-left: 4px solid #ffc107;
 }
 
-/* Dynamic text color for user-role */
 .user-card[data-role="admin"] .user-role {
-    color: #ff6f61; /* Matching red for admin */
+    color: #ff6f61; 
 }
 
 .user-card[data-role="user"] .user-role {
-    color: #007bff; /* Matching blue for customer */
+    color: #007bff; 
 }
 
 .user-card[data-role="shopowner"] .user-role {
-    color: #28a745; /* Matching green for shop owner */
+    color: #28a745;
 }
 
 .user-card[data-role="delivery"] .user-role {
-    color: #ffc107; /* Matching yellow for delivery */
+    color: #ffc107; 
 }
 
-
-/* Scrollbar customization */
 .user-container-grid::-webkit-scrollbar {
     width: 8px;
 }
