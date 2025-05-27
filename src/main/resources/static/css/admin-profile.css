@@ -1,6 +1,123 @@
 .main{
     height: 100vh;
-    background-color: #f9fbfd;
     border-radius: 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.user-container-header {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.user-container{
+    display: flex;
+    align-items: center;
+}
+
+.user-image-container img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 1.5rem;
+    border: 2px solid #ddd;
+}
+
+.user-data > *{
+    margin-bottom: 8px;
+}
+
+.user-data .user-name {
+    font-size: 1.35rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.user-data .user-role,
+.user-data .user-email {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.personal-info-container,
+.address-info-container {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 1.5rem;
+}
+
+.personal-info-header,
+.address-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 18px;
+    margin-bottom: 1.25rem;
+}
+
+.update-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.update-button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.personal-info-content,
+.address-info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+}
+
+.personal-info-item,
+.address-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 100;
+    margin-bottom: 0.5rem;
+    color: rgb(129, 126, 126);
+}
+
+input {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    font-size: 17px;
+}
+
+input[readonly] {
+    background-color: #f0f0f0;
+}
+
+.header{
+    border-bottom: 1px solid #ddd;
+}
+
+.header-title{
+    color: var(--primary-color);
 }
