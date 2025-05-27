@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/admin-all.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -73,11 +74,12 @@
                     <div class="user-container">
                         <div class="user-image-container">
                             <img class="user-image" alt="" th:src="${current_user.profilePath}">
+                            <i class="fas fa-camera camera-icon"></i>
                         </div>
                         <div class="user-data">
-                            <p class="user-name">Thwin Naing</p>
-                            <p class="user-role">Admin</p>
-                            <p class="user-email">htoonaing@gmail.com</p>
+                            <p class="user-name" th:text="${admin_profile.firstName + ' ' + (admin_profile.lastName != null ? admin_profile.lastName : ' ')}">User Name</p>
+                            <p class="user-role" th:text="${admin_profile.role}">User Role</p>
+                            <p class="user-email" th:text="${admin_profile.email}">user@gmail.com</p>
                         </div>
                     </div>   
                 </div>
@@ -91,23 +93,23 @@
                     <div class="personal-info-content">
                         <div class="personal-info-item">
                             <label for="first-name">First Name</label>
-                            <input type="text" id="first-name" name="first-name" value="">
+                            <input type="text" id="first-name" name="first-name" th:value="${admin_profile.firstName}" readonly>
                         </div>
                         <div class="personal-info-item">
                             <label for="middle-name">Middle Name</label>
-                            <input type="text" id="middle-name" name="middle-name" value="" readonly>
+                            <input type="text" id="middle-name" name="middle-name" th:value="${admin_profile.middleName != null ? admin_profile.middleName : ''}" readonly>
                         </div>
                         <div class="personal-info-item">
                             <label for="last-name">Last Name</label>
-                            <input type="text" id="last-name" name="last-name" value="" readonly>
+                            <input type="text" id="last-name" name="last-name" th:value="${admin_profile.lastName != null ? admin_profile.middleName : ''}" readonly>
                         </div>
                         <div class="personal-info-item">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="" readonly>
+                            <input type="email" id="email" name="email" th:value="${admin_profile.email}" readonly>
                         </div>
                         <div class="personal-info-item">
                             <label for="age">Age</label>
-                            <input type="number" id="age" name="age" value="" min="0">
+                            <input type="number" id="age" name="age" th:value="${admin_profile.age}" min="0" readonly>
                         </div>
                     </div>
                 </div>
@@ -120,8 +122,8 @@
                     </div>
                     <div class="address-info-content">
                         <div class="address-info-item">
-                            <label for="street">Address</label>
-                            <input type="text" id="street" name="street" value="" readonly>
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" th:value="${admin_profile.address}" readonly>
                         </div>
                     </div>
                 </div>

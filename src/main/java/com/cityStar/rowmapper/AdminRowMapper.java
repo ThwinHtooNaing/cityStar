@@ -21,7 +21,7 @@ public class AdminRowMapper {
     }
 
     public static AdminDTO toDto(Admin admin){
-        if(admin == null)return null;
+        if(admin == null) return null;
         AdminDTO adminDto = new AdminDTO();
         adminDto.setId(admin.getId());
         adminDto.setFirstName(admin.getFirstName());
@@ -29,6 +29,21 @@ public class AdminRowMapper {
         adminDto.setLastName(admin.getLastName());
         adminDto.setEmail(admin.getEmail());
         adminDto.setPassword(admin.getPassword());
+        adminDto.setAddress(admin.getAddress());
+        adminDto.setAge(admin.getAge());
+        adminDto.setRole(admin.getRole());
+        adminDto.setProfilePath(admin.getProfilePath());
+        return adminDto;
+    }
+
+    public static AdminDTO toDtoWithoutPassword(Admin admin){
+        if(admin == null) return null;
+        AdminDTO adminDto = new AdminDTO();
+        adminDto.setId(admin.getId());
+        adminDto.setFirstName(admin.getFirstName());
+        adminDto.setMiddleName(admin.getMiddleName());
+        adminDto.setLastName(admin.getLastName());
+        adminDto.setEmail(admin.getEmail());
         adminDto.setAddress(admin.getAddress());
         adminDto.setAge(admin.getAge());
         adminDto.setRole(admin.getRole());

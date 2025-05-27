@@ -19,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDTO {
     
-    private Long id; 
+    private Long id;
 
     @NotBlank(message = "First name is required!")
     @Size(max = 50, message = "Not More than 50 characters!")

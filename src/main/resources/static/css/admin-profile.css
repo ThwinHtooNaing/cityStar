@@ -21,21 +21,39 @@
     margin-bottom: 1.5rem;
 }
 
-.user-container{
+.user-container {
     display: flex;
     align-items: center;
 }
 
-.user-image-container img {
+.user-image-container {
+    position: relative;
+    margin-right: 1.5rem;
+}
+
+.user-image {
     width: 100px;
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 1.5rem;
     border: 2px solid #ddd;
 }
 
-.user-data > *{
+.camera-icon {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.user-data > * {
     margin-bottom: 8px;
 }
 
@@ -50,6 +68,7 @@
     color: #666;
     font-size: 0.95rem;
 }
+
 
 .personal-info-container,
 .address-info-container {
