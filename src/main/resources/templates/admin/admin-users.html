@@ -36,9 +36,14 @@
                         <i class="fas fa-calendar-alt"></i>
                         <a th:href="@{/admin/appointments}">Appointments</a>
                     </li>
-                    <li class="nav-link bottom-link">
-                        <i class="fas fa-sign-out-alt bottom link"></i>
-                        <a th:href="@{/admin/logout}">Logout</a>
+                    <li class="bottom-link">
+                        <button onclick="confirmLogout(event)" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </button>
+                        <!-- Hidden Logout Form -->
+                        <form id="logout-form" th:action="@{/auth/logout}" method="post" style="display: none;">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -151,6 +156,19 @@
                     
                 </div>
             </main>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div id="loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Logging out...
+            </div>
+            <div class="modal-buttons">
+                <button onclick="proceedLogout()" id="confirm-btn">Yes</button>
+                <button onclick="closeModal()">No</button>
+            </div>
         </div>
     </div>
 </body>

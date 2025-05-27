@@ -26,6 +26,13 @@ public class SecurityConfig {
                 .requestMatchers("/auth/**").permitAll()
                 .anyRequest().authenticated()
             )
+            .logout(logout -> logout
+                .logoutUrl("/auth/logout")
+                .logoutSuccessUrl("/auth/login?logout")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+            )
             .securityContext(context -> context.requireExplicitSave(false))
             .requiresChannel(channel ->
                 channel.anyRequest().requiresSecure());

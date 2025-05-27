@@ -23,3 +23,23 @@ if (toggler) {
     }
   });
 }
+
+function confirmLogout(event) {
+  event.preventDefault();
+  document.getElementById("logout-modal").style.display = "block";
+}
+
+function closeModal() {
+  document.getElementById("logout-modal").style.display = "none";
+}
+
+function proceedLogout() {
+  document.getElementById("loading-spinner").style.display = "block";
+  document.getElementById("confirm-btn").disabled = true;
+
+  // Simulate loading animation delay
+  setTimeout(() => {
+    document.getElementById("logout-form").submit();
+  }, 1000); // 1 second delay
+}
+
