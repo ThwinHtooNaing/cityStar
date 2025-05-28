@@ -33,6 +33,11 @@ public class SecurityConfig {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID")
             )
+            .sessionManagement(session -> session
+                .invalidSessionUrl("/auth/login?timeout")
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(false)
+            )
             .securityContext(context -> context.requireExplicitSave(false))
             .requiresChannel(channel ->
                 channel.anyRequest().requiresSecure());
