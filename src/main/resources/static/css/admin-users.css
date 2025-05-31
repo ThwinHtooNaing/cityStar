@@ -125,7 +125,7 @@
     border-left: 4px solid #007bff; 
 }
 
-.user-card[data-role="Patient"] {
+.user-card[data-role="PATIENT"] {
     border-left: 4px solid #28a745; 
 }
 
