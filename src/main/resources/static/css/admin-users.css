@@ -117,36 +117,29 @@
 }
 
 /* Border colors for roles */
-.user-card[data-role="admin"] {
+.user-card[data-role="ADMIN"] {
     border-left: 4px solid #ff6f61; 
 }
 
-.user-card[data-role="user"] {
+.user-card[data-role="DOCTOR"] {
     border-left: 4px solid #007bff; 
 }
 
-.user-card[data-role="shopowner"] {
+.user-card[data-role="Patient"] {
     border-left: 4px solid #28a745; 
 }
 
-.user-card[data-role="delivery"] {
-    border-left: 4px solid #ffc107;
-}
 
-.user-card[data-role="admin"] .user-role {
+.user-card[data-role="ADMIN"] .user-role {
     color: #ff6f61; 
 }
 
-.user-card[data-role="user"] .user-role {
+.user-card[data-role="DOCTOR"] .user-role {
     color: #007bff; 
 }
 
-.user-card[data-role="shopowner"] .user-role {
+.user-card[data-role="PATIENT"] .user-role {
     color: #28a745;
-}
-
-.user-card[data-role="delivery"] .user-role {
-    color: #ffc107; 
 }
 
 .user-container-grid::-webkit-scrollbar {
