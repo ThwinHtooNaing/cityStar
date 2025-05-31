@@ -16,4 +16,5 @@ public class AppointmentDTO {
     private AvailabilityDTO availability;
     private LocalDateTime appointmentTime;
     private Status status;
+    private PatientDTO patient;
 }
