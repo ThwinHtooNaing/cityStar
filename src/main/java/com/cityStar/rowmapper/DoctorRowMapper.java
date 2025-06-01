@@ -23,4 +23,22 @@ public class DoctorRowMapper {
         doctor.setSpeciality(dto.getSpeciality());
         return doctor;
     }
+
+    public static DoctorDTO toDtoWithoutPassword(Doctor doctor){
+        if(doctor == null) return null;
+        DoctorDTO doctorDto = new DoctorDTO();
+        doctorDto.setId(doctor.getId());
+        doctorDto.setFirstName(doctor.getFirstName());
+        doctorDto.setMiddleName(doctor.getMiddleName());
+        doctorDto.setLastName(doctor.getLastName());
+        doctorDto.setEmail(doctor.getEmail());
+        doctorDto.setAddress(doctor.getAddress());
+        doctorDto.setAge(doctor.getAge());
+        doctorDto.setRole(doctor.getRole());
+        doctorDto.setProfilePath(doctor.getProfilePath());
+        doctorDto.setBio(doctor.getBio());
+        doctorDto.setContactInfo(doctor.getContactInfo());
+        doctorDto.setSpeciality(doctor.getSpeciality());
+        return doctorDto;
+    }
 }
