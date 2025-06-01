@@ -3,12 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/doctor/doctor-dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/all.css}">
+    <link rel="stylesheet" th:href="@{/css/doctor/doctor-all.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-    <h1>Hello Doctor</h1>
-    <p th:text="${current_user.firstName}"></p>
-    <p th:text="${current_user.lastName}"></p>
-    <img th:src="@{${current_user.profilePath}}" alt="Profile Picture" width="100" height="100"/>
+    <div class="container">        
+        <aside class="aside">
+            <div class="website-title-container">
+                <div class="tile-icon-container">
+                    <i class='fas fa-heartbeat website-icon'></i>
+                </div>
+                <div class="website-title">
+                    City Star
+                </div>
+            </div>
+            <div class="nav-container">
+                <ul class="nav-li-container">
+                    <li class="nav-link active">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <a th:href="@{/doctor/dashboard}" class="link">Dashboard</a>
+                    </li>
+                    <li class="nav-link">
+                        <i class="fas fa-calendar-alt"></i>
+                        <a th:href="@{/doctor/appointments}" class="link">Appointments</a>
+                    </li>
+                    <li class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <a th:href="@{/doctor/profile}" class="link">Profile</a>
+                    </li>
+                    <li class="bottom-link">
+                        <button onclick="confirmLogout(event)" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i> <a>Logout</a>
+                        </button>
+                        <!-- Hidden Logout Form -->
+                        <form id="logout-form" th:action="@{/auth/logout}" method="post" style="display: none;">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+        <div class="home-panel">
+            <nav class="nav">
+                <div class="toggler-container">
+                    <div class="toggler-bg">
+                        <i class="fa-solid fa-bars toggler-icon"></i>
+                    </div>
+                </div>
+                <div class="material-container">
+                    <div class="notification-container">
+                        <div class="bell-icon-container">
+                            <i class="fa-solid fa-bell bell-icon"></i>
+                            <span class="notification-dot">
+                            </span>
+                        </div>
+                    </div>
+                    <div class="profile-container">
+                        <div class="profile-image">
+                            <img class="img" alt="" th:src="${current_user.profilePath}">
+                        </div>
+                        <div class="profile-name">
+                            <div class="profile-name-text">
+                                <span>Dr. </span>
+                                <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</span>
+                            </div>
+                            <div class="specialization-container">
+                                <span th:text="${current_user.speciality != null ? current_user.speciality : 'Specialization'}" class="specialization">
+                                    Specialization
+                                </span>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </nav>
+            <main class="main">
+              </main>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div id="loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Logging out...
+            </div>
+            <div class="modal-buttons">
+                <button onclick="proceedLogout()" id="confirm-btn">Yes</button>
+                <button onclick="closeModal()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Warning Modal -->
+    <div id="session-warning-modal" class="modal">
+        <div class="modal-content warning">
+        <span class="material-icons warning-icon" style="color:orange; font-size:90px;">warning_amber</span>
+        <p><strong>Your session is about to expire.</strong><br>You will be logged out in 60 seconds.</p>
+        <div class="modal-buttons">
+            <button onclick="logout()">Log Out</button>
+            <button onclick="continueSession()">Continue Session</button>
+        </div>
+        </div>
+    </div>
+    
+    <!-- Session Expired Modal -->
+    <div id="session-expired-modal" class="modal">
+        <div class="modal-content expired">
+        <svg width="150px" height="150px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="14" rx="2" ry="2" stroke="#2563EB" stroke-width="2" fill="#E0F2FE"></rect>
+            <path d="M12 7v4l3 2" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="18" cy="18" r="2" fill="#2563EB"></circle>
+        </svg>
+        <h2>Your session has expired</h2>
+        <p>Please log in again. We kept your filters and breakdowns in place.</p>
+        <button onclick="location.href='/auth/login?timeout'" class="button">Refresh</button>
+        </div>
+    </div>
 </body>
+<script th:src="@{/js/doctor/doctor-dashboard.js}"></script>
+<script th:src="@{/js/doctor/doctor-all.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </html>

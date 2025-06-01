@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/css/doctor/doctor-profile.css}">
+    <title>Appointments</title>
+    <link rel="stylesheet" th:href="@{/css/doctor/doctor-appointments.css}">
     <link rel="stylesheet" th:href="@{/css/all.css}">
     <link rel="stylesheet" th:href="@{/css/doctor/doctor-all.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,11 +29,11 @@
                         <i class="fas fa-tachometer-alt"></i>
                         <a th:href="@{/doctor/dashboard}" class="link">Dashboard</a>
                     </li>
-                    <li class="nav-link">
+                    <li class="nav-link active">
                         <i class="fas fa-calendar-alt"></i>
                         <a th:href="@{/doctor/appointments}" class="link">Appointments</a>
                     </li>
-                    <li class="nav-link active">
+                    <li class="nav-link">
                         <i class="fas fa-user"></i>
                         <a th:href="@{/doctor/profile}" class="link">Profile</a>
                     </li>
@@ -126,6 +126,6 @@
         </div>
     </div>
 </body>
-<script th:src="@{/js/doctor/doctor-profile.js}"></script>
+<script th:src="@{/js/doctor/doctor-appointments.js}"></script>
 <script th:src="@{/js/doctor/doctor-all.js}"></script>
 </html>

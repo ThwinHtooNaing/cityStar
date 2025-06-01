@@ -32,4 +32,9 @@ public class DoctorDTO extends UserDTO {
     public DoctorDTO(String firstName,String lastName,String profilePath){
         super(firstName,lastName,profilePath);
     }
+
+    public DoctorDTO(String firstName,String lastName,String profilePath,String speciality){
+        super(firstName,lastName,profilePath);
+        this.speciality = speciality;
+    }
 }

@@ -34,6 +34,15 @@ public class DoctorController {
         return "doctor/doctor-dashboard";
     }
 
+    @GetMapping("/appointments")
+    public String appointments(@AuthenticationPrincipal CustomUserDetails user,
+                            HttpSession session,
+                            Model model) {
+        DoctorDTO doctor = getDoctor(user);
+        model.addAttribute("current_user", doctor);
+        return "doctor/doctor-appointments";
+    }
+
     @GetMapping("/profile")
     public String Profile(@AuthenticationPrincipal CustomUserDetails user,
                            HttpSession session,
@@ -47,7 +56,7 @@ public class DoctorController {
     
     private DoctorDTO getDoctor(CustomUserDetails user){
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
-        return new DoctorDTO(doctor.getFirstName(), doctor.getLastName(), doctor.getProfilePath());
+        return new DoctorDTO(doctor.getFirstName(), doctor.getLastName(), doctor.getProfilePath(),doctor.getSpeciality());
     }
 
     private DoctorDTO getDoctorProfile(Doctor doctor){
