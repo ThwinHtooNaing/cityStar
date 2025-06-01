@@ -10,7 +10,6 @@ public class AvailabilityRowMapper {
                 .availableDate(dto.getAvailableDate())
                 .startTime(dto.getStartTime())
                 .endTime(dto.getEndTime())
-                .isBooked(false)
                 .doctor(doctor)
                 .build();
     }

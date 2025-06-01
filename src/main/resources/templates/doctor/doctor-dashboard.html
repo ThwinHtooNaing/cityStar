@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
     <div class="container">        
@@ -26,7 +27,7 @@
             <div class="nav-container">
                 <ul class="nav-li-container">
                     <li class="nav-link active">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <i class="fi fi-sr-apps"></i>
                         <a th:href="@{/doctor/dashboard}" class="link">Dashboard</a>
                     </li>
                     <li class="nav-link">
@@ -83,7 +84,167 @@
                 </div>
             </nav>
             <main class="main">
-              </main>
+                <div class="data-container">
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="card-data">
+                                <span class="card-data-count"></span>
+                                <span class="card-data-text">Total Appointments</span>
+                            </div>
+                            <div class="card-icon">
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-data">
+                                <span class="card-data-count"></span>
+                                <span class="card-data-text">Total Appointments</span>
+                            </div>
+                            <div class="card-icon">
+                                <i></i>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-data">
+                                <span class="card-data-count"></span>
+                                <span class="card-data-text">Total Appointments</span>
+                            </div>
+                            <div class="card-icon">
+                                <i></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="new-appointment-container">
+                        <div class="new-appointment-header">
+                            <span class="new-appointment-text">New Appointment</span>
+                            <a class="new-appointment-link">See all</a>
+                        </div>
+                        <div class="new-appointment-content">
+                            <div class="new-appointment-card">
+                                <div class="new-appointment-card-header">
+                                    <div class="new-appointment-card-img-container">
+                                        <img class="new-appointment-card-img" alt="image" >
+                                    </div>
+                                    <div class="new-appointment-card-data">
+                                        <span class="new-appointment-card-patient-name">Patient Name</span>
+                                        <span class="new-appointment-card-patient-age">Patient Age</span>                                     
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-body">
+                                    <div class="new-appointment-card-info">
+                                        <span class="new-appointment-date">
+
+                                        </span>
+                                        <i class="new-appointment-icon">
+                                        </i>
+                                    </div>
+                                    <div class="new-appointment-card-info-details">
+                                        <span class="new-appointment-info">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-footer">
+                                    <button class="new-appointment-button">Accept</button>
+                                    <button class="new-appointment-button">three dots</button>
+                                </div>
+                            </div>
+                            <div class="new-appointment-card">
+                                <div class="new-appointment-card-header">
+                                    <div class="new-appointment-card-img-container">
+                                        <img class="new-appointment-card-img" alt="image" >
+                                    </div>
+                                    <div class="new-appointment-card-data">
+                                        <span class="new-appointment-card-patient-name">Patient Name</span>
+                                        <span class="new-appointment-card-patient-age">Patient Age</span>                                     
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-body">
+                                    <div class="new-appointment-card-info">
+                                        <span class="new-appointment-date">
+
+                                        </span>
+                                        <i class="new-appointment-icon">
+                                        </i>
+                                    </div>
+                                    <div class="new-appointment-card-info-details">
+                                        <span class="new-appointment-info">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-footer">
+                                    <button class="new-appointment-button">Accept</button>
+                                    <button class="new-appointment-button">three dots</button>
+                                </div>
+                            </div>
+                            <div class="new-appointment-card">
+                                <div class="new-appointment-card-header">
+                                    <div class="new-appointment-card-img-container">
+                                        <img class="new-appointment-card-img" alt="image" >
+                                    </div>
+                                    <div class="new-appointment-card-data">
+                                        <span class="new-appointment-card-patient-name">Patient Name</span>
+                                        <span class="new-appointment-card-patient-age">Patient Age</span>                                     
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-body">
+                                    <div class="new-appointment-card-info">
+                                        <span class="new-appointment-date">
+
+                                        </span>
+                                        <i class="new-appointment-icon">
+                                        </i>
+                                    </div>
+                                    <div class="new-appointment-card-info-details">
+                                        <span class="new-appointment-info">
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="new-appointment-card-footer">
+                                    <button class="new-appointment-button">Accept</button>
+                                    <button class="new-appointment-button">three dots</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="graph-container">
+
+                    </div>
+                </div>
+                <div class="calender-data-container">
+                    <div class="calender-container">
+                        <div class="calender-container-header">
+                            <div>
+                                <i class="calender-container-header-icon"></i>
+                                <span class="calender-container-header-date">Calendar</span>
+                            </div>
+                        </div>
+                        <div class="calender-container-body">
+                            <div id="calendar"></div>
+                        </div>
+                    </div>
+                    <div class="appointment-container">
+                        <div class="appointment-container-header">
+                            <div>
+                                <span class="appointment-container-header-text">Appointments</span>
+                            </div>
+                            <div>
+                                <span class="start-time">
+
+                                </span>
+                                <span class="start-unit">
+                                    AM
+                                </span>
+                                <span class="end-time">
+
+                                </span>
+                                <span class="end-unit">
+                                    PM
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
         </div>
     </div>
     <!-- Modal -->

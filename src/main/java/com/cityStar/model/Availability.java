@@ -30,6 +30,5 @@ public class Availability {
     private LocalDate availableDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    private boolean isBooked;   
     
 }

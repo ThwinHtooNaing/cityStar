@@ -13,6 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AppointmentDTO {
     private Long appointmentId;
+    private String appointmentInfo;
     private AvailabilityDTO availability;
     private LocalDateTime appointmentTime;
     private Status status;
