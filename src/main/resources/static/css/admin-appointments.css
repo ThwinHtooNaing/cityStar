@@ -47,12 +47,24 @@
     color: #363636;
 }
 
+.patient-table tbody{
+    border-left: 1px solid #dbdada;
+    border-right: 1px solid #dbdada;
+    border-bottom: 1px solid #dbdada;
+    border-radius: 10px;
+}
+
 .patient-table tbody tr{
     overflow: auto;
 }
 
 .patient-table tbody tr {
     background-color: var(--text-color);
+    color: #888;
+}
+
+.patient-table tbody tr:hover {
+    background-color: #efefef;
     color: #888;
 }
 
@@ -101,4 +113,51 @@
     max-height: 80vh;
     overflow-y: auto;
     padding: 0px 20px 20px 20px;
+}
+
+.calendar-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--text-color);
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    padding: 10px 20px;
+}
+  
+.calendar-icon {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin-right: 20px;
+}
+
+.calendar-content {
+    display: flex;
+    flex-direction: column;
+}
+  
+.calendar-label {
+    font-size: 12px;
+    color: #626262;
+    margin-bottom: 3px;
+}
+  
+.calendar-date {
+    font-size: 16px;
+    width: 100px;
+    color: var(--primary-color);
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    outline: none;
+}
+
+
+.flatpickr-calendar {
+    z-index: 100 !important;
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
 }

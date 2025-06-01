@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <div class="container">        
@@ -84,8 +85,22 @@
                         <div class="header-item">Completed</div>
                         <div class="header-item">Cancelled</div>
                     </div>
-                    <div class="calender-container">
-                        
+                    <div class="calendar-container">
+                        <div class="calendar-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                width="26" height="26"
+                                fill="var(--primary-color)"
+                                viewBox="0 0 24 24">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 
+                                    .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 
+                                    2-.9 2-2V6c0-1.1-.9-2-2-2zm0 
+                                    16H5V10h14v10zm0-12H5V6h14v2z"/>
+                            </svg>
+                        </div>
+                        <div class="calendar-content">
+                          <div class="calendar-label">Today</div>
+                          <input id="calendar" class="calendar-date" type="date" />
+                        </div>
                     </div>
                 </div>
                 
@@ -256,4 +271,12 @@
 </body>
 <script th:src="@{/js/admin-appointments.js}"></script>
 <script th:src="@{/js/admin-all.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    
+    flatpickr("#calendar", {
+      dateFormat: "d M Y",
+      defaultDate: new Date()
+    });
+  </script>
 </html>
