@@ -1,5 +1,7 @@
 package com.cityStar.controller;
 
+import java.util.List;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cityStar.dto.AdminDTO;
+import com.cityStar.dto.UserDTO;
 import com.cityStar.model.Admin;
 import com.cityStar.rowmapper.AdminRowMapper;
 import com.cityStar.security.CustomUserDetails;
@@ -44,12 +47,15 @@ public class AdminController {
                             Model model) {
         AdminDTO admin = getAdmin(user);
         model.addAttribute("current_user", admin);
+
+        List<UserDTO> users = userService.findAllDto();
+        model.addAttribute("users", users);
         return "admin/admin-users";
     }
 
     @GetMapping("/appointments")
     public String Appointments(@AuthenticationPrincipal CustomUserDetails user,
-                            Model model) {
+                                Model model) {
         AdminDTO admin = getAdmin(user);
         model.addAttribute("current_user", admin);
         return "admin/admin-appointments";

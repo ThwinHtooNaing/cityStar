@@ -85,76 +85,14 @@
                     </div>
                 </div>
                 <div class="user-container-grid" id="user-container-grid">
-                    <!-- <div th:each="user : ${users}" class="user-card" th:data-role="${user.role.roleName}">
-                        <img class="user-photo" th:src="${user.profilePic}" alt="User Photo">
+                    <div th:each="user : ${users}" class="user-card" th:data-role="${user.role}">
+                        <img class="user-photo" th:src="${user.profilePath}" alt="User Photo">
                         <div class="user-data">
-                            <p class="user-name" th:text="${user.firstName} + ' ' + ${user.lastName}"></p>
+                            <p class="user-name" th:text="${user.firstName + ' ' + (user.lastName != null ? user.lastName : '')}"></p>
                             <p class="user-gmail" th:text="${user.email}"></p>
-                            <p class="user-role" th:text="${user.role.roleName}"></p>
+                            <p class="user-role" th:text="${user.role}"></p>
                         </div>
-                    </div> -->
-                    <div class="user-card" data-role="DOCTOR">
-                        <img class="user-photo" src="/images/admin1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Alice Johnson</p>
-                            <p class="user-gmail">alice.johnson@example.com</p>
-                            <p class="user-role">DOCTOR</p>
-                        </div>
-                    </div>
-                    
-                    <div class="user-card" data-role="ADMIN">
-                        <img class="user-photo" src="/images/editor1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Bob Smith</p>
-                            <p class="user-gmail">bob.smith@example.com</p>
-                            <p class="user-role">ADMIN</p>
-                        </div>
-                    </div>
-
-                    <div class="user-card" data-role="PATIENT">
-                        <img class="user-photo" src="/images/editor1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Bob Smith</p>
-                            <p class="user-gmail">bob.smith@example.com</p>
-                            <p class="user-role">PATIENT</p>
-                        </div>
-                    </div>
-                    
-                    <div class="user-card" data-role="DOCTOR">
-                        <img class="user-photo" src="/images/user1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Charlie Davis</p>
-                            <p class="user-gmail">charlie.davis@example.com</p>
-                            <p class="user-role">DOCTOR</p>
-                        </div>
-                    </div>       
-                    
-                    <div class="user-card" data-role="DOCTOR">
-                        <img class="user-photo" src="/images/user1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Charlie Davis</p>
-                            <p class="user-gmail">charlie.davis@example.com</p>
-                            <p class="user-role">DOCTOR</p>
-                        </div>
-                    </div>   
-                    <div class="user-card" data-role="PATIENT">
-                        <img class="user-photo" src="/images/admin1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Alice Johnson</p>
-                            <p class="user-gmail">a</p>
-                            <p class="user-role">PATIENT</p>
-                        </div>
-                    </div>
-
-                    <div class="user-card" data-role="PATIENT">
-                        <img class="user-photo" src="/images/editor1.jpg" alt="User Photo">
-                        <div class="user-data">
-                            <p class="user-name">Bob Smith</p>
-                            <p class="user-gmail">b</p>
-                            <p class="user-role">PATIENT</p>
-                        </div>
-                    </div>
-                    
+                    </div>                    
                 </div>
             </main>
         </div>

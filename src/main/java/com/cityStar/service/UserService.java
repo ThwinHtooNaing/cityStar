@@ -1,11 +1,15 @@
 package com.cityStar.service;
 
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.cityStar.dto.UserDTO;
 import com.cityStar.exception.EmailDuplicationException;
 import com.cityStar.model.User;
 import com.cityStar.repository.IuserRepository;
+import com.cityStar.rowmapper.UserRowMapper;
 
 @Service
 public class UserService {
@@ -34,5 +38,11 @@ public class UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email).get();
     }
-    
+
+    public List<UserDTO> findAllDto() {
+        return userRepository.findAll().stream()
+                .map(UserRowMapper::toDtoWithoutPassword)
+                .toList();
+    }   
+
 }
