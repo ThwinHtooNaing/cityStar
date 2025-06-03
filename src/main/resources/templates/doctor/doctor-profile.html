@@ -83,8 +83,48 @@
                     </div>
                 </div>
             </nav>
-            <main class="main">
-              </main>
+            <main class="main">              
+                <div class="data-container">
+                  <div class="data-left">
+                    <div class="image-container">
+                        <img class="profile-detail-image" alt="profile-image" th:src="${doctor_profile.profilePath}">
+                        <i class="fas fa-camera camera-icon"></i>
+                    </div>
+                    <div class="data-detail">
+                        <div class="doctor-name">Dr. <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}"></span></div>
+                        <div class="specialization">
+                          <span class="specialization-text" th:text="${doctor_profile.speciality}">Orthodontist</span>
+                        </div>
+                        <div class="Bio">
+                          <strong class="bio-title">Bio</strong>
+                          <p class="bio-text">
+                            
+                          </p>
+                        </div>
+                        <div class="doctor-contact-info">
+                            <strong class="contact-info-title">Contact</strong>
+                            <p class="contact-info-text" th:text="${doctor_profile.contactInfo}">      
+                            </p>
+                        </div>
+                    </div>
+                  </div>
+              
+                  <div class="data-right">
+                    <div class="availability-box">
+                      <h3 class="availability-title">AVAILABILLITY</h3>
+                      <label>Today Date</label>
+                      <input type="date" value="2022-06-30">
+                      <select class="select-time">
+                        <option>10:00 AM - 11:00 AM</option>
+                      </select>
+                      <button>Set Availability</button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+
+                </div>
+            </main>
         </div>
     </div>
     <!-- Modal -->

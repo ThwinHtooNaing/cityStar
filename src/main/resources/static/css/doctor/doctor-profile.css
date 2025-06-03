@@ -1,0 +1,162 @@
+.data-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+  
+.data-left {
+    display: flex;
+    flex-direction: row;
+    width: 65%;
+}
+.image-container{
+    position: relative;
+}
+  
+.image-container img.profile-detail-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+  
+.data-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+  
+.doctor-name {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+  
+.doctor-contact-info {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+}
+  
+.specialization {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+  
+.specialization-text {
+    background-color: var(--opacity-color);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-right: 5px;
+}
+  
+.Bio {
+    margin-top: 5px;
+    padding-bottom: 8px;
+    /* border-bottom: 1px solid #8d8d8d; */
+}
+  
+.bio-title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+
+.doctor-contact-info {
+    margin-top: 10px;
+    /* padding-bottom: 10px; */
+}
+  
+.contact-info-title {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+.contact-info-text{
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+  
+.bio-text {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.5;
+}
+  
+.data-right {
+    width: 30%;
+}
+  
+.availability-box {
+    background-color: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+  
+.availability-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+  
+.availability-box label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+}
+  
+.availability-box input[type="date"],
+.availability-box select.select-time {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+  
+.availability-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--linear-color-2);
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+  
+.availability-box button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.camera-icon {
+    top: 0;
+    left: 0;
+    position: absolute;
+    font-size: 1rem;
+    background-color: #e8e8e8;
+    color: #333;
+    border-radius: 50%;
+    padding: 6px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    z-index: 1;
+}

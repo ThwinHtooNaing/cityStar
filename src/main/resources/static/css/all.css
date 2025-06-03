@@ -11,14 +11,13 @@ body {
     --hover-color:rgb(223, 223, 223);
     --primary-color: rgb(45, 52, 141);
     --primary-hover-color:rgb(34, 38, 94);
-    --secondary-color: #f50057;
-    --text-color: #333;
     --background-color: #f4f4f4;
     --linear-color-1:rgb(16, 4, 83);
     --linear-color-2:rgb(42, 68, 174);
     --linear-color-3: rgb(57, 154, 183);
     --text-color:white;
     --error-color:red;
+    --opacity-color:#3a84df;
 }
 a, a:visited, a:hover, a:active, a:focus {
     color: inherit;
