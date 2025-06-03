@@ -87,23 +87,25 @@
                 <div class="data-container">
                   <div class="data-left">
                     <div class="image-container">
-                        <img class="profile-detail-image" alt="profile-image" th:src="${doctor_profile.profilePath}">
-                        <i class="fas fa-camera camera-icon"></i>
+                        <div class="profile-image-container">
+                            <img class="profile-detail-image" alt="profile-image" th:src="${doctor_profile.profilePath}">
+                            <i class="fas fa-camera camera-icon"></i>
+                        </div>          
                     </div>
                     <div class="data-detail">
                         <div class="doctor-name">Dr. <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}"></span></div>
                         <div class="specialization">
                           <span class="specialization-text" th:text="${doctor_profile.speciality}">Orthodontist</span>
                         </div>
-                        <div class="Bio">
-                          <strong class="bio-title">Bio</strong>
-                          <p class="bio-text">
-                            
-                          </p>
-                        </div>
                         <div class="doctor-contact-info">
                             <strong class="contact-info-title">Contact</strong>
                             <p class="contact-info-text" th:text="${doctor_profile.contactInfo}">      
+                            </p>
+                        </div>
+                        <div class="Bio">
+                            <strong class="bio-title">Bio</strong>
+                            <p class="bio-text" th:text="${doctor_profile.bio ?: 'not set'}">
+                              Dr. John Doe is a highly experienced orthodontist with over 10 years of practice in the field. lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                             </p>
                         </div>
                     </div>
@@ -121,8 +123,53 @@
                     </div>
                   </div>
                 </div>
-                <div>
-
+                <div class="user-profile-detail-container">
+                    <div class="tab-container">
+                        <div class="tabs">
+                            <button class="tab active">Personal Info</button>
+                            <button class="tab">Description</button>
+                        </div>
+                    </div>
+                    <div class="user-profile-detail-section personal-info-section" style="display: none;">
+                        <div class="personal-info-content">
+                            <div class="personal-info-item">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" name="first-name" th:value="${doctor_profile.firstName}" readonly>
+                            </div>
+                            <div class="personal-info-item">
+                                <label for="middle-name">Middle Name</label>
+                                <input type="text" id="middle-name" name="middle-name" th:value="${doctor_profile.middleName != null ? doctor_profile.middleName : '-'}" readonly>
+                            </div>
+                            <div class="personal-info-item">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" name="last-name" th:value="${doctor_profile.lastName != null ? doctor_profile.lastName : '-'}" readonly>
+                            </div>
+                            <div class="personal-info-item">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" th:value="${doctor_profile.email}" readonly>
+                            </div>
+                            <div class="personal-info-item">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" th:value="${doctor_profile.age}" min="0" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-profile-detail-section doctor-description-info-section" >
+                        <div class="doctor-description-info-content">
+                            <div class="doctor-description-info-item">
+                                <label for="contact-info">Contact Info</label>
+                                <input type="text" id="contact-info" name="contact-info" th:value="${doctor_profile.contactInfo}" readonly>
+                            </div>
+                            <div class="doctor-description-info-item">
+                                <label for="speciality">Speciality</label>
+                                <input type="text" id="speciality" name="speciality" th:value="${doctor_profile.speciality}" readonly>
+                            </div>
+                            <div class="doctor-description-info-item">
+                                <label for="bio">Bio</label>
+                                <textarea type="textarea" id="bio" name="bio"  th:text="${doctor_profile.bio ?: '-' }"></textarea>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

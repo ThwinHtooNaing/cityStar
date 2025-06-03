@@ -109,7 +109,7 @@
 .availability-title {
     font-size: 16px;
     font-weight: 500;
-    color: #555;
+    color: var(--primary-color);
     margin-bottom: 15px;
     text-transform: uppercase;
 }
@@ -117,8 +117,8 @@
 .availability-box label {
     display: block;
     font-size: 14px;
-    color: #333;
-    margin-bottom: 5px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
   
 .availability-box input[type="date"],
@@ -129,6 +129,7 @@
     border-radius: 6px;
     border: 1px solid #ccc;
     font-size: 14px;
+    box-sizing: border-box;
 }
   
 .availability-box button {
@@ -146,10 +147,19 @@
 .availability-box button:hover {
     background-color: var(--primary-hover-color);
 }
-
+.profile-image-container{
+    position:relative;
+}
+.bio-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Change this number to control the number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .camera-icon {
-    top: 0;
-    left: 0;
+    bottom: 7px;
+    right: 5px;
     position: absolute;
     font-size: 1rem;
     background-color: #e8e8e8;
@@ -159,4 +169,94 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     z-index: 1;
+}
+.tab-container {
+    background-color: transparent;
+    display: flex;
+}
+.tabs{
+    background-color: rgb(215, 214, 214);
+    justify-content: start;
+    border-radius: 6px 6px 0 0;
+}
+.user-profile-detail-section{
+    background-color: var(--text-color);
+    border-radius: 0 0 6px 6px;
+    padding: 20px;
+} 
+.tab {
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 10px 30px;
+    color: #555;
+}
+  
+.tab.active {
+    color: black;
+    background-color: var(--text-color);
+    border-radius: 6px 6px 0 0;
+    color: var(--primary-color);
+}
+
+.user-profile-detail-container {
+    /* background-color: #ffffff; */
+    border-radius: 6px;
+    margin-top: 10px;
+    color: #333;
+}
+
+.personal-info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.doctor-description-info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+}
+.personal-info-item,
+.doctor-description-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 100;
+    margin-bottom: 0.5rem;
+    color: rgb(129, 126, 126);
+    font-size: 0.9rem;
+}
+
+input {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: none;
+}
+
+textarea {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: none;
+    font-weight: normal;
+}
+
+input[readonly] {
+    background-color: none;
+}
+input[readonly]:active{
+    outline: var(--primary-color) solid 2px;
+}
+input:active{
+    outline: var(--primary-color) solid 2px;
+}
+input:focus {
+    outline: var(--primary-color) solid 2px;
 }
