@@ -3,9 +3,6 @@
 // showToast("warning", "Warning", "You missed a field.");
 // showToast('info', 'Note', 'Just an informational message.');
 
-const todayInput = document.getElementById("today-date");
-todayInput.value = new Date().toISOString().split("T")[0];
-
 function setAvailability() {
     const start = document.getElementById("start-time").value;
     const end = document.getElementById("end-time").value;
@@ -107,3 +104,25 @@ function closeToast(button) {
     toast.style.animation = "slideOut 0.4s ease forwards";
     setTimeout(() => toast.remove(), 400);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const todayInput = document.getElementById("today-date");
+    todayInput.value = new Date().toISOString().split("T")[0];
+    fetch('/doctor/availability')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('No availability set for today');
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById('start-time').value = data.startTime;
+            document.getElementById('end-time').value = data.endTime;
+        })
+        .catch(error => {
+            console.warn(error.message);
+            document.getElementById('today-date').value = today;
+            document.getElementById('start-time').value = '';
+            document.getElementById('end-time').value = '';
+        });
+});

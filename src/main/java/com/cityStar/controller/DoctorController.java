@@ -21,10 +21,6 @@ import com.cityStar.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-
-
-
 
 @Controller
 @RequestMapping("/doctor")
@@ -82,8 +78,13 @@ public class DoctorController {
 
     @GetMapping("/availability")
     @ResponseBody
-    public AvailabilityDTO availability(Model model) {
-        return null;
+    public ResponseEntity<?> availability(Model model) {
+        Availability latest = doctorService.getLatestAvailabilityForToday();
+        if (latest == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        AvailabilityDTO dto = AvailabilityRowMapper.toDto(latest);
+        return ResponseEntity.ok(dto);
     }
     
     private DoctorDTO getDoctor(CustomUserDetails user){
