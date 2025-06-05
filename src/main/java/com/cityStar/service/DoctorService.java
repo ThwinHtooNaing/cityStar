@@ -22,6 +22,7 @@ public class DoctorService {
 
     public Availability getLatestAvailabilityForToday() {
         LocalDate today = LocalDate.now();
+        System.out.println("Fetching latest availability for date: " + today);
         return availabilityrepo.findTopByAvailableDateOrderByAvailabilityIdDesc(today)
                 .orElse(null); // Or throw custom exception
     }

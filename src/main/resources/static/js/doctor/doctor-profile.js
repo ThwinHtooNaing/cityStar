@@ -29,7 +29,9 @@ function setAvailability() {
   }
 
   const availabilityData = {
-    availableDate: new Date().toISOString().slice(0, 10),
+      availableDate: new Date().toLocaleDateString("en-CA", {
+        timeZone: "Asia/Bangkok",
+      }),
     startTime: `${String(startHour).padStart(2, "0")}:${String(
       startMin
     ).padStart(2, "0")}`,
@@ -39,6 +41,8 @@ function setAvailability() {
     )}`,
     doctor: null, // will be populated on the backend
   };
+
+  console.log("Availability Data:", availabilityData);
 
   fetch("/doctor/availability", {
     method: "POST",
@@ -106,8 +110,20 @@ function closeToast(button) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const startTimeInput = document.getElementById("start-time");
+  const endTimeInput = document.getElementById("end-time");
+  let originalStartTime = "";
+  let originalEndTime = "";
+  let changedStartTime = "";
+  let changedEndTime = "";
+  const setAvailabilityBtn = document.querySelector(
+    "button[onclick='setAvailability()']"
+  );
+  setAvailabilityBtn.disabled = true;
     const todayInput = document.getElementById("today-date");
-    todayInput.value = new Date().toISOString().split("T")[0];
+    todayInput.value = new Date().toLocaleDateString("en-CA", {
+      timeZone: "Asia/Bangkok",
+    });
     fetch('/doctor/availability')
         .then(response => {
             if (!response.ok) {
@@ -116,13 +132,60 @@ document.addEventListener("DOMContentLoaded", () => {
             return response.json();
         })
         .then(data => {
-            document.getElementById('start-time').value = data.startTime;
-            document.getElementById('end-time').value = data.endTime;
+            startTimeInput.value = data.startTime;
+            endTimeInput.value = data.endTime;
+            originalStartTime = data.startTime.slice(0, 5);
+            originalEndTime = data.endTime.slice(0, 5);
+            setAvailabilityBtn.disabled = true;
         })
         .catch(error => {
             console.warn(error.message);
-            document.getElementById('today-date').value = today;
+            // document.getElementById('today-date').value = today;
             document.getElementById('start-time').value = '';
             document.getElementById('end-time').value = '';
         });
+
+        function checkIfChanged() {
+
+          console.log("originalStartTime:", originalStartTime);
+          console.log("originalEndTime:", originalEndTime);
+          console.log("changedStartTime:", changedStartTime);
+          console.log("changedEndTime:", changedEndTime);
+          
+          if(changedStartTime == originalStartTime &&
+            changedEndTime == originalEndTime){
+              setAvailabilityBtn.disabled = true;
+            }else{
+              setAvailabilityBtn.disabled = false;
+            }
+            
+        }
+
+        // Listen for input changes
+        [startTimeInput, endTimeInput].forEach((input) => {
+          input.addEventListener("input", () => {
+            changedStartTime = startTimeInput.value.trim();
+            changedEndTime = endTimeInput.value.trim();
+            checkIfChanged();});
+        });
+});
+const cameraIcon = document.querySelector(".camera-icon");
+const fileInput = document.getElementById("profile-image-input");
+const profileImage = document.querySelector(".profile-detail-image");
+
+// Click on camera icon opens file input
+cameraIcon.addEventListener("click", () => {
+  fileInput.click();
+});
+
+// When a file is selected, show preview in the <img>
+fileInput.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file && file.type.startsWith("image/")) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      profileImage.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 });

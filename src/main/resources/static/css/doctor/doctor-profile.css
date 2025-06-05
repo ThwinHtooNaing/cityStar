@@ -143,6 +143,10 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
+.availability-box button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
   
 .availability-box button:hover {
     background-color: var(--primary-hover-color);
