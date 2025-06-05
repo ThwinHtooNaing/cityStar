@@ -21,6 +21,8 @@ import com.cityStar.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -67,7 +69,7 @@ public class DoctorController {
                                           @RequestBody AvailabilityDTO availability,
                                           Model model) {
         try{
-            Doctor doctor = (Doctor)userService.findByEmail(user.getUsername());
+            Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
             Availability record = AvailabilityRowMapper.toEntity(availability,doctor);
             doctorService.addAvailability(record);
             return ResponseEntity.ok("Availability added successfully");
@@ -76,9 +78,13 @@ public class DoctorController {
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body("Failed to save availability: " + e.getMessage());
         }
-        
     }
-    
+
+    @GetMapping("/availability")
+    @ResponseBody
+    public AvailabilityDTO availability(Model model) {
+        return null;
+    }
     
     private DoctorDTO getDoctor(CustomUserDetails user){
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());

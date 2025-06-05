@@ -8,8 +8,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cityStar.enums.DoctorStatus;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -25,6 +23,5 @@ public class Doctor extends User {
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Availability> availabilities = new ArrayList<>();
-    private DoctorStatus status;
         
 }

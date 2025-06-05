@@ -13,4 +13,13 @@ public class AvailabilityRowMapper {
                 .doctor(doctor)
                 .build();
     }
+
+    public static AvailabilityDTO toDto(Availability availability) {
+        return AvailabilityDTO.builder()
+                .availabilityId(availability.getAvailabilityId())
+                .availableDate(availability.getAvailableDate())
+                .startTime(availability.getStartTime())
+                .endTime(availability.getEndTime())
+                .build();
+    }
 }
