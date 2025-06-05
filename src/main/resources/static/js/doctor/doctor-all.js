@@ -1,3 +1,10 @@
+const csrfToken = document
+  .querySelector('meta[name="_csrf"]')
+  .getAttribute("content");
+const csrfHeader = document
+  .querySelector('meta[name="_csrf_header"]')
+  .getAttribute("content");
+  
 document.querySelectorAll(".nav-link").forEach((item) => {
   item.addEventListener("click", function () {
     const link = this.querySelector(".link");

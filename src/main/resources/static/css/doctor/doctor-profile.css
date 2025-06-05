@@ -152,7 +152,7 @@
 }
 .bio-text {
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* Change this number to control the number of lines */
+    -webkit-line-clamp: 3; 
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -276,6 +276,7 @@ input:focus {
 }
 .update-button {
     background-color: var(--primary-color);
+    margin-right: 10px;
     color: white;
     border: none;
     padding: 0.5rem 1rem;

@@ -17,6 +17,5 @@ public class AvailabilityDTO {
     private LocalDate availableDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    private boolean isBooked;
     private DoctorDTO doctor; 
 }
