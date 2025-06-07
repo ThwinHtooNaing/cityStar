@@ -21,6 +21,10 @@ public class StorageServiceImpl implements StorageService{
         if (file == null || file.isEmpty()) {
             throw new RuntimeException("File is empty or null");
         }
+        String contentType = file.getContentType();
+        if (contentType == null || !contentType.startsWith("image/")) {
+            throw new RuntimeException("Only image files are allowed");
+        }
         try {
 
             String sanitizedName = (user.getFirstName()+"_"+user.getLastName()+"_").toLowerCase().replaceAll("\\s", "");
@@ -36,7 +40,5 @@ public class StorageServiceImpl implements StorageService{
         } catch (IOException e){
             throw new RuntimeException("Error saving profile picture", e);
         }
-
     }
-    
 }
