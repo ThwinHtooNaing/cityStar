@@ -6,7 +6,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cityStar.dto.AvailabilityDTO;
 import com.cityStar.dto.DoctorDTO;
@@ -19,6 +21,7 @@ import com.cityStar.service.DoctorService;
 import com.cityStar.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -49,6 +52,22 @@ public class DoctorController {
         return "doctor/doctor-appointments";
     }
 
+    @PatchMapping(value = "/profile", consumes = "multipart/form-data")
+    @ResponseBody
+    public ResponseEntity<?> Profile(@AuthenticationPrincipal CustomUserDetails user,
+                                     @RequestPart(value = "doctor",required = false) DoctorDTO doctorDTO,
+                                     @RequestPart(required = false) MultipartFile file) {
+        try{
+            doctorService.updateDoctorProfile(user.getUsername(), doctorDTO, file);
+        }catch (Exception e) {
+            return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Failed Due to: " + e.getMessage());
+        }
+        return ResponseEntity.ok("Profile updated successfully.");
+    }
+    
+
     @GetMapping("/profile")
     public String Profile(@AuthenticationPrincipal CustomUserDetails user,
                            Model model) {
@@ -62,8 +81,7 @@ public class DoctorController {
     @PostMapping("/availability")
     @ResponseBody
     public ResponseEntity<?> availability(@AuthenticationPrincipal CustomUserDetails user,
-                                          @RequestBody AvailabilityDTO availability,
-                                          Model model) {
+                                          @RequestBody AvailabilityDTO availability) {
         try{
             Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
             Availability record = AvailabilityRowMapper.toEntity(availability,doctor);
@@ -78,8 +96,9 @@ public class DoctorController {
 
     @GetMapping("/availability")
     @ResponseBody
-    public ResponseEntity<?> availability(Model model) {
-        Availability latest = doctorService.getLatestAvailabilityForToday();
+    public ResponseEntity<?> availability(@AuthenticationPrincipal CustomUserDetails user,
+                                           Model model) {
+        Availability latest = doctorService.getLatestAvailabilityForToday(user.getUsername());
         if (latest == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }

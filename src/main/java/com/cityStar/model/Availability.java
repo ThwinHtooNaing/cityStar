@@ -30,5 +30,4 @@ public class Availability {
     private LocalDate availableDate;
     private LocalTime startTime;
     private LocalTime endTime;
-    
 }

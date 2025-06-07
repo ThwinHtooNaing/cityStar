@@ -37,4 +37,18 @@ public class DoctorDTO extends UserDTO {
         super(firstName,lastName,profilePath);
         this.speciality = speciality;
     }
+
+    @Override
+    public String toString() {
+        return "DoctorDTO{" +
+                "firstName='" + getFirstName() + '\'' +
+                ", middleName='" + getMiddleName() + '\'' +
+                ", lastName='" + getLastName() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", age=" + getAge() +
+                ", contactInfo='" + contactInfo + '\'' +
+                ", speciality='" + speciality + '\'' +
+                ", bio='" + bio + '\'' +
+                '}';
+    }
 }

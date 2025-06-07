@@ -9,6 +9,10 @@ function setAvailability() {
 
   if (!start || !end) {
     showToast("warning", "Warning", "You missed a field.");
+    // showToast('success', 'Success!', 'Availability set successfully.');
+    // showToast('error', 'Error', 'Time must be at least 1 hour.');
+    // showToast("warning", "Warning", "You missed a field.");
+    // showToast('info', 'Note', 'Just an informational message.');
     return;
   }
 
@@ -147,11 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function checkIfChanged() {
 
-          console.log("originalStartTime:", originalStartTime);
-          console.log("originalEndTime:", originalEndTime);
-          console.log("changedStartTime:", changedStartTime);
-          console.log("changedEndTime:", changedEndTime);
-          
           if(changedStartTime == originalStartTime &&
             changedEndTime == originalEndTime){
               setAvailabilityBtn.disabled = true;
@@ -169,23 +168,154 @@ document.addEventListener("DOMContentLoaded", () => {
             checkIfChanged();});
         });
 });
+
 const cameraIcon = document.querySelector(".camera-icon");
 const fileInput = document.getElementById("profile-image-input");
 const profileImage = document.querySelector(".profile-detail-image");
+const updateBtn = document.getElementById("update-profile-btn");
+const inputs = document.querySelectorAll(
+  ".user-profile-detail-section input, .user-profile-detail-section textarea"
+);
 
-// Click on camera icon opens file input
+let originalImageSrc = profileImage.src;
+
+const originalValues = {};
+inputs.forEach((input) => {
+  originalValues[input.id] = input.getAttribute("data-original");
+});
+
 cameraIcon.addEventListener("click", () => {
   fileInput.click();
 });
 
-// When a file is selected, show preview in the <img>
+function checkForChanges() {
+  let hasChanged = false;
+
+  
+  inputs.forEach((input) => {
+    if (input.value !== originalValues[input.id]) {
+      hasChanged = true;
+    }
+  });
+
+  if (profileImage.src !== originalImageSrc) {
+    hasChanged = true;
+  }
+
+  updateBtn.style.display = hasChanged ? "block" : "none";
+}
+
+inputs.forEach((input) => {
+  input.addEventListener("input", checkForChanges);
+});
+
 fileInput.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file && file.type.startsWith("image/")) {
     const reader = new FileReader();
     reader.onload = function (e) {
       profileImage.src = e.target.result;
+      checkForChanges();
     };
     reader.readAsDataURL(file);
   }
+});
+
+updateBtn.addEventListener("click", () => {
+  const formData = new FormData();
+  const changedData = {};
+
+  inputs.forEach((input) => {
+    if (input.value !== originalValues[input.id]) {
+      changedData[input.name] = input.value;
+    }
+  });
+
+  if (Object.keys(changedData).length > 0) {
+    formData.append(
+      "doctor",
+      new Blob([JSON.stringify(changedData)], { type: "application/json" })
+    );
+  }
+  let imagefilechange;
+  if (fileInput.files.length > 0 && profileImage.src !== originalImageSrc) {
+    formData.append("file", fileInput.files[0]);
+    imagefilechange=true;
+  }
+  
+  fetch("/doctor/profile", {
+    method: "PATCH",
+    headers: {
+      [csrfHeader]: csrfToken, 
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Failed to update profile");
+      return response.text();
+    })
+    .then((message) => {
+      showToast("success", "Success!", message);
+      updateBtn.style.display = "none";
+      inputs.forEach((input) => {
+        originalValues[input.id] = input.value;
+        input.setAttribute("data-original", input.value);
+      });
+      originalImageSrc = profileImage.src;
+      fileInput.value = "";
+      setTimeout(() => {
+        // Update name
+        if (changedData.firstName || changedData.lastName) {
+          const fullName = `${
+            changedData.firstName || originalValues["first-name"]
+          } ${changedData.lastName || originalValues["last-name"] || ""}`;
+          document
+            .querySelectorAll(
+              ".doctor-name span, .profile-name-text span:nth-child(2)"
+            )
+            .forEach((el) => {
+              el.textContent = fullName;
+            });
+        }
+
+        // Update specialization
+        if (changedData.speciality) {
+          document
+            .querySelectorAll(
+              ".specialization-text, .specialization-container .specialization"
+            )
+            .forEach((el) => {
+              el.textContent = changedData.speciality;
+            });
+        }
+
+        // Update contact info
+        if (changedData.contactInfo) {
+          document.querySelector(".contact-info-text").textContent =
+            changedData.contactInfo;
+        }
+
+        // Update bio
+        if (changedData.bio) {
+          document.querySelector(".bio-text").textContent = changedData.bio;
+        }
+
+        // Update profile image if changed
+        console.log("Selected file:", fileInput.files[0]);
+        console.log(imagefilechange);
+        if (imagefilechange) 
+        {
+          const profileImageElement = document.querySelector(".img");
+          if(profileImageElement){
+            profileImageElement.src = originalImageSrc;
+          }
+        }
+        showToast("success", "Success!", "Profile Status Updated");
+        imagefilechange = false;
+      }, 3000);
+    })
+    .catch((err) => {
+      console.error("Update error:", err);
+      showToast("error", "Error", err);
+    });
 });
