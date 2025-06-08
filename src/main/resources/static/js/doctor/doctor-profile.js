@@ -225,6 +225,9 @@ updateBtn.addEventListener("click", () => {
       });
       originalImageSrc = profileImage.src;
       fileInput.value = "";
+      setTimeout(()=> {
+        showToast("info", "Note", "Picture is uploading pls wait");
+      },1000)
       setTimeout(() => {
         // Update name
         if (changedData.firstName || changedData.lastName) {
@@ -265,10 +268,9 @@ updateBtn.addEventListener("click", () => {
         // Update profile image if changed
         console.log("Selected file:", fileInput.files[0]);
         console.log(imagefilechange);
-        if (imagefilechange) 
-        {
+        if (imagefilechange) {
           const profileImageElement = document.querySelector(".img");
-          if(profileImageElement){
+          if (profileImageElement) {
             profileImageElement.src = originalImageSrc;
           }
         }
