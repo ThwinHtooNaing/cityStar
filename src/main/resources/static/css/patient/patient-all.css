@@ -1,0 +1,139 @@
+body{
+    background-color: #e8e8e8;
+}
+.website-title-container{
+    margin-left: 10px;
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    color: var(--primary-color);
+}
+.website-title{
+    font-size: 20px;
+}
+.website-icon{
+    font-size: 23px;
+}
+.nav {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffffff;
+    border-radius: 10px;
+    /* padding: 4px 2px; */
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-li-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    list-style-type: none;
+    color: #5b5b5b;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-link .link {
+    text-decoration: none;
+    color: inherit;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+.nav-link.active {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.bell-icon-container{
+    position: relative;
+    /* background-color: rgb(223, 223, 223); */
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bell-icon-container:hover{
+    background-color: var(--hover-color);
+}
+.bell-icon{
+    font-size: 17px;
+    color: var(--primary-color);
+}
+
+.specialization-container > span{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200px;
+    font-size: 12px;
+    color: #5b5b5b;
+}
+
+.profile-name-text > span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 200px;
+    font-size: 16px;
+    color: var(--primary-color);
+}
+.toggler-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+}
+.toggler-container:hover .toggler-bg{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+.toggler-bg{
+    padding: 5px 7px;
+    border-radius: 5px;
+}
+.toggler-icon{
+    font-size: 22px;
+    color: var(--primary-color);
+}
+.material-container{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.profile-container{
+    margin-right: 20px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.profile-image:hover{
+   background-color: var(--hover-color);
+   border-radius: 50%;
+   cursor: pointer;
+    
+}
+.profile-image{
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-image img{
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    border: 1px solid gray;
+}
