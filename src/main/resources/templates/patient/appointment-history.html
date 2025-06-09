@@ -8,7 +8,7 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="stylesheet" th:href="@{/css/patient/appointment-history.css}">
     <link rel="stylesheet" th:href="@{/css/all.css}">
-    <link rel="stylesheet" th:href="@{/css/patient/patient-all.css}">
+    <link rel="stylesheet" th:href="@{/css/patient/patient-all-profile-appoint.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -16,7 +16,42 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
-    
+    <nav>
+        <div class="title-container">
+            <div class="title-icon">
+                <i class='fas fa-heartbeat website-icon'></i>
+            </div>
+            <div class="title-name">
+                City Star
+            </div>
+        </div>
+        <div class="nav-profile-container">
+            <div class="nav-profile-image-container">
+                <img th:src="${current_user.profilePath}">
+            </div>
+            <div class="nav-profile-name-container">
+                <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}" class="nav-profile-name">user name</span>
+            </div>
+        </div>
+        <div class="nav-link-container">
+            <div class="nav-link">
+                <i class="fas fa-user nav-link-icon"></i>
+                <a class="link" th:href="@{/patient/profile}">
+                    Patient
+                </a>
+            </div>
+            <div class="nav-link active">
+                <i class="fas fa-calendar-alt nav-link-icon"></i>
+                <a class="link" th:href="@{/patient/appointmentHistory}">
+                    Appointment History
+                </a>
+            </div>
+        </div>
+        <div class="logout-btn-container">
+            <p>go back to main menu</p>
+            <button>Click Here</button>
+        </div>
+    </nav>
 </body>
 <script th:src="@{/js/patient/appointment-history.js}"></script>
 <script th:src="@{/js/patient/patient-all.js}"></script>

@@ -16,49 +16,92 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
-    <nav class="nav">
-        <div class="website-title-container">
-            <div class="tile-icon-container">
-                <i class='fas fa-heartbeat website-icon'></i>
-            </div>
-            <div class="website-title">
-                City Star
-            </div>
-        </div>
-        <div class="nav">
-            <ul class="nav-li-container">
-                <li class="nav-link active">
-                    <a th:href="@{/patient/home}" class="link">Home</a>
-                </li>
-                <li class="nav-link">
-                    <a th:href="@{/patient/findDoctor}" class="link">Find Doctor</a>
-                </li>
-                <li class="nav-link">
-                    <a th:href="@{/patient/aboutUs}" class="link">About us</a>
-                </li>
-                <div class="tab-underline"></div>
-            </ul>
-        </div>
-        <div class="material-container">
-            <div class="notification-container">
-                <div class="bell-icon-container">
-                    <i class="fa-solid fa-bell bell-icon"></i>
-                    <span class="notification-dot">
-                    </span>
+    <header>
+        <nav class="nav">
+            <div class="website-title-container">
+                <div class="tile-icon-container">
+                    <i class='fas fa-heartbeat website-icon'></i>
+                </div>
+                <div class="website-title">
+                    City Star
                 </div>
             </div>
-            <div class="profile-container">
-                <div class="profile-name">
-                    <div class="profile-name-text">
-                        <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</span>
+            <div class="nav">
+                <ul class="nav-li-container">
+                    <li class="nav-link active">
+                        <a th:href="@{/patient/home}" class="link">Home</a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/patient/findDoctor}" class="link">Find Doctor</a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/patient/aboutUs}" class="link">About us</a>
+                    </li>
+                    <div class="tab-underline"></div>
+                </ul>
+            </div>
+            <div class="material-container">
+                <div class="notification-container">
+                    <div class="bell-icon-container">
+                        <i class="fa-solid fa-bell bell-icon"></i>
+                        <span class="notification-dot">
+                        </span>
                     </div>
                 </div>
-                <div class="profile-image">
-                    <img class="img" alt="" th:src="${current_user.profilePath}">
-                </div>            
+                <div class="profile-container">
+                    <div class="profile-name">
+                        <div class="profile-name-text">
+                            <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</span>
+                        </div>
+                    </div>
+                    <div class="profile-image">
+                        <img class="img" alt="" th:src="${current_user.profilePath}">
+                    </div>            
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content">
+            <div class="content-data">
+                <h1>Book Your Doctor Appointment<br/> Online</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam dolor obcaecati in perspiciatis alias culpa?</p>
+                <div class="content-button-container">
+                    <button class="btn appointment-btn">
+                        Book An Appointment
+                    </button>
+                </div>
+            </div>
+            <div class="content-img">
+                <div class="content-img-container">
+                    <img class="doctor-img" alt="doctor-img" th:src="@{/img/doctor_photo.png}"/>
+                </div>
+            </div>
+            <div class="search-input-container">
+                <div class="time-slot-container">
+                    <div class="time-slot">
+                        <label>Start Time</label>
+                        <input type="time" id="start-time">
+                    </div>
+                    <div class="time-slot">
+                        <label>End Time</label>
+                        <input type="time" id="end-time">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <input type="text" placeholder="search doctor for appointment" class="input">
+                    <i class="input-icon"></i>
+                </div>
+                <button type="button" class="btn search-btn">Search</button>
             </div>
         </div>
-    </nav>
+        <div class="body">
+            
+        </div>
+    </div>
+    <footer>
+        
+    </footer>
 </body>
 <script th:src="@{/js/patient/home-page.js}"></script>
 <script th:src="@{/js/patient/patient-all.js}"></script>

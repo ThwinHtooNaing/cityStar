@@ -1,0 +1,101 @@
+.content{
+    display: flex;
+    /* background: linear-gradient(90deg,var(--linear-color-1),var(--linear-color-2), var(--linear-color-3)); */
+    background-color: var(--linear-color-2);
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.btn{
+    border: none;
+    background: none;
+}
+.content-data{
+    width: 500px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.appointment-btn{
+    padding: 15px 20px;
+    border-radius: 12px;
+    background-color: var(--background-color);
+    font-family: 'Poppins',sans-serif;
+    font-size: 15px;
+    color: var(--primary-color);
+}
+.appointment-btn:hover{
+    cursor: pointer;
+}
+.content-data{
+    margin-left: 50px;
+}
+.content-data h1{
+    font-family: 'Poppins',sans-serif;
+    color: var(--text-color);
+}
+.content-data p{
+    font-family: sans-serif;
+    color: var(--text-color);
+    font-weight: 100;
+}
+.content-img-container img{
+    width: 500px;
+}
+.search-input-container{
+    position: absolute;
+    bottom: -30px;
+    right: 50%;
+    transform: translateX(50%);
+    width: 880px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    padding: 10px 10px;
+    box-shadow: 2px 2px 18px #00000019;
+}
+.time-slot-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #ecf1f6;
+}
+.time-slot {
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.time-slot input{
+    border-radius: 8px;
+    border: none;
+    background: none;
+}
+.input{
+    padding: 12px;
+    width: 360px;
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    border: none;
+}
+.input:focus{
+    outline: 1px solid var(--primary-color);
+}
+.search-btn{
+    padding: 12px 30px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border-radius: 10px;
+}
+.body{
+    background-color: var(--background-color);
+    height: 500px;
+}

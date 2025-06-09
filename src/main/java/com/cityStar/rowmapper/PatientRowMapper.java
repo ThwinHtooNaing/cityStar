@@ -19,4 +19,19 @@ public class PatientRowMapper {
         patient.setProfilePath(patientDTO.getProfilePath());
         return patient;
     }
+
+    public static PatientDTO toDtoWithoutPassword(Patient patient){
+        if(patient == null) return null;
+        PatientDTO patientDto = new PatientDTO();
+        patientDto.setId(patient.getId());
+        patientDto.setFirstName(patient.getFirstName());
+        patientDto.setMiddleName(patient.getMiddleName());
+        patientDto.setLastName(patient.getLastName());
+        patientDto.setEmail(patient.getEmail());
+        patientDto.setAddress(patient.getAddress());
+        patientDto.setAge(patient.getAge());
+        patientDto.setRole(patient.getRole());
+        patientDto.setProfilePath(patient.getProfilePath());
+        return patientDto;
+    }
 }

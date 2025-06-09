@@ -19,6 +19,7 @@ body {
     --error-color:red;
     --opacity-color:#3a84df;
     --decline-color:#ad1457;
+    --opacity-hover-color:#d5e8ffd5;
 }
 a, a:visited, a:hover, a:active, a:focus {
     color: inherit;
