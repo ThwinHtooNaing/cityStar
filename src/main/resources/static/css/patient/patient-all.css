@@ -2,7 +2,7 @@ body{
     background-color: #e8e8e8;
 }
 .website-title-container{
-    margin-left: 10px;
+    margin-left: 30px;
     display: flex;  
     justify-content: center;
     align-items: center;
@@ -12,13 +12,12 @@ body{
     color: var(--primary-color);
 }
 .website-title{
-    font-size: 20px;
+    font-size: 24px;
 }
 .website-icon{
-    font-size: 23px;
+    font-size: 28px;
 }
 .nav {
-    position: sticky;
     top: 0;
     right: 0;
     display: flex;
@@ -47,8 +46,9 @@ body{
 .nav-link .link {
     text-decoration: none;
     color: inherit;
-    padding: 10px 0;
+    padding: 16px 0;
     display: inline-block;
+    font-size: 18px;
 }
 
 .nav-link.active {
@@ -58,7 +58,6 @@ body{
 
 .bell-icon-container{
     position: relative;
-    /* background-color: rgb(223, 223, 223); */
     width: 35px;
     height: 35px;
     border-radius: 5px;
@@ -77,7 +76,7 @@ body{
 .profile-name-text > span{
     font-family: 'Roboto', sans-serif;
     font-weight: 200px;
-    font-size: 16px;
+    font-size: 17px;
     color: var(--primary-color);
 }
 .toggler-container{
@@ -364,3 +363,85 @@ button{
     right: 15px; 
     z-index: 10000;
 }
+.site-footer {
+    background-color: var(--linear-color-1);
+    color: white;
+    padding: 40px 20px;
+    font-family: Arial, sans-serif;
+}
+  
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+  
+.footer-column {
+    width: 16%;
+    min-width: 160px;
+    margin-bottom: 20px;
+}
+  
+.footer-column h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #fff;
+}
+  
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+  
+.footer-column li {
+    margin-bottom: 8px;
+}
+  
+.footer-column a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+}
+  
+.footer-column a:hover {
+    color: #fff;
+}
+  
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+}
+  
+.footer-brand {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+  
+.footer-socials a {
+    margin: 0 10px;
+    color: #aaa;
+    font-size: 18px;
+}
+  
+.footer-socials a:hover {
+    color: #fff;
+}
+  
+.footer-bottom p {
+    font-size: 13px;
+    margin-top: 10px;
+}
+  
+.footer-bottom a {
+    color: #aaa;
+    margin: 0 5px;
+    text-decoration: none;
+}
+  
+.footer-bottom a:hover {
+    color: #fff;
+}
+  

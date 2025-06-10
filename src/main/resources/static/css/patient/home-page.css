@@ -6,13 +6,7 @@
     align-items: center;
     position: relative;
 }
-.search-input-container {
-    z-index: 1; /* explicitly lower */
-}
 
-.content {
-    z-index: 1; /* explicitly lower */
-}
 .btn{
     border: none;
     background: none;
@@ -103,5 +97,92 @@
 }
 .body{
     background-color: var(--background-color);
-    height: 500px;
+    height: 100px;
 }
+.how-it-works-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: var(--background-color);
+    font-family: 'Roboto', sans-serif;
+}
+  
+.how-it-works-section h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+  
+.how-it-works-section .subtitle {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+  
+.steps-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.step-box {
+    background: #eeeeee;
+    padding: 30px 20px;
+    border-radius: 12px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(28, 28, 28, 0.137);
+    transition: transform 0.3s ease;
+}
+  
+.step-box:hover {
+    transform: translateY(-5px);
+}
+  
+.step-icon {
+    font-size: 40px;
+    color: var(--opacity-color);
+    margin-bottom: 15px;
+}
+  
+.step-box h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #222;
+}
+  
+.step-box p {
+    font-size: 14px;
+    color: #666;
+}
+
+.three-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin: 0 10px;
+}
+  
+.three-dots::before,
+.three-dots::after,
+.three-dots span {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+  
+.three-dots span {
+    background-color: #bbb;
+}
+
+.three-dots span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+  

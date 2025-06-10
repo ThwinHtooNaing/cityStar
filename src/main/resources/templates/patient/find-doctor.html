@@ -16,49 +16,137 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 </head>
 <body>
-    <nav class="nav">
-        <div class="website-title-container">
-            <div class="tile-icon-container">
-                <i class='fas fa-heartbeat website-icon'></i>
-            </div>
-            <div class="website-title">
-                City Star
-            </div>
-        </div>
-        <div class="nav">
-            <ul class="nav-li-container">
-                <li class="nav-link">
-                    <a th:href="@{/patient/home}" class="link">Home</a>
-                </li>
-                <li class="nav-link active">
-                    <a th:href="@{/patient/findDoctor}" class="link">Find Doctor</a>
-                </li>
-                <li class="nav-link">
-                    <a th:href="@{/patient/aboutUs}" class="link">About us</a>
-                </li>
-                <div class="tab-underline"></div>
-            </ul>
-        </div>
-        <div class="material-container">
-            <div class="notification-container">
-                <div class="bell-icon-container">
-                    <i class="fa-solid fa-bell bell-icon"></i>
-                    <span class="notification-dot">
-                    </span>
+    <header class="header">
+        <nav class="nav">
+            <div class="website-title-container">
+                <div class="tile-icon-container">
+                    <i class='fas fa-heartbeat website-icon'></i>
+                </div>
+                <div class="website-title">
+                    City Star
                 </div>
             </div>
-            <div class="profile-container">
-                <div class="profile-name">
-                    <div class="profile-name-text">
-                        <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</span>
+            <div class="nav">
+                <ul class="nav-li-container">
+                    <li class="nav-link">
+                        <a th:href="@{/patient/home}" class="link">Home</a>
+                    </li>
+                    <li class="nav-link active">
+                        <a th:href="@{/patient/findDoctor}" class="link">Find Doctor</a>
+                    </li>
+                    <li class="nav-link">
+                        <a th:href="@{/patient/aboutUs}" class="link">About us</a>
+                    </li>
+                    <div class="tab-underline"></div>
+                </ul>
+            </div>
+            <div class="material-container">
+                <div class="notification-container">
+                    <div class="bell-icon-container">
+                        <i class="fa-solid fa-bell bell-icon"></i>
+                        <span class="notification-dot">
+                        </span>
                     </div>
                 </div>
-                <div class="profile-image">
-                    <img class="img" alt="" th:src="${current_user.profilePath}" onclick="toggleProfileModal()">
-                </div>            
+                <div class="profile-container">
+                    <div class="profile-name">
+                        <div class="profile-name-text">
+                            <span th:text="${current_user.firstName + ' ' + (current_user.lastName != null ? current_user.lastName : '')}">user name</span>
+                        </div>
+                    </div>
+                    <div class="profile-image">
+                        <img class="img" alt="" th:src="${current_user.profilePath}" onclick="toggleProfileModal()">
+                    </div>            
+                </div>
             </div>
+        </nav>
+    </header>
+    
+    <footer class="site-footer">
+        <div class="footer-container">
+          <div class="footer-column">
+            <h4>Patient Tools</h4>
+            <ul>
+              <li><a href="#">Book Appointment</a></li>
+              <li><a href="#">Find a Doctor</a></li>
+              <li><a href="#">Health Check</a></li>
+              <li><a href="#">Prescription Refill</a></li>
+              <li><a href="#">Medical Reports</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h4>Services</h4>
+            <ul>
+              <li><a href="#">General Consultation</a></li>
+              <li><a href="#">Telemedicine</a></li>
+              <li><a href="#">Lab Tests</a></li>
+              <li><a href="#">Home Care</a></li>
+              <li><a href="#">Emergency Services</a></li>
+              <li><a href="#">Vaccinations</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Health Articles</a></li>
+              <li><a href="#">Symptom Checker</a></li>
+              <li><a href="#">Disease Guide</a></li>
+              <li><a href="#">Wellness Tips</a></li>
+              <li><a href="#">Nutrition Advice</a></li>
+              <li><a href="#">Patient Community</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h4>Transparency</h4>
+            <ul>
+              <li><a href="#">Service Pricing</a></li>
+              <li><a href="#">Treatment Options</a></li>
+              <li><a href="#">Insurance Partners</a></li>
+              <li><a href="#">Doctor Credentials</a></li>
+              <li><a href="#">Patient Rights</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Appointment Help</a></li>
+              <li><a href="#">Technical Support</a></li>
+              <li><a href="#">Request Medical Record</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-column">
+            <h4>Our Clinic</h4>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Newsroom</a></li>
+              <li><a href="#">Policies</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
         </div>
-    </nav>
+      
+        <div class="footer-bottom">
+          <div class="footer-brand">🏥 MediCare</div>
+          <div class="footer-socials">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-google"></i></a>
+          </div>
+          <p class="footer-copyright">
+            ©2024 MediCare | <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Security</a>
+          </p>
+        </div>
+      </footer>
+      
     <div id="logout-modal" class="modal">
         <div class="modal-content">
             <p>Are you sure you want to logout?</p>
