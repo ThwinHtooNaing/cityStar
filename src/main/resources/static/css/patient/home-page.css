@@ -1,11 +1,17 @@
 .content{
     display: flex;
-    /* background: linear-gradient(90deg,var(--linear-color-1),var(--linear-color-2), var(--linear-color-3)); */
     background-color: var(--linear-color-2);
     width: 100%;
     justify-content: space-between;
     align-items: center;
     position: relative;
+}
+.search-input-container {
+    z-index: 1; /* explicitly lower */
+}
+
+.content {
+    z-index: 1; /* explicitly lower */
 }
 .btn{
     border: none;

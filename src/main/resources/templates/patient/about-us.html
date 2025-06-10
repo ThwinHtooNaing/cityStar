@@ -54,12 +54,75 @@
                     </div>
                 </div>
                 <div class="profile-image">
-                    <img class="img" alt="" th:src="${current_user.profilePath}">
+                    <img class="img" alt="" th:src="${current_user.profilePath}" onclick="toggleProfileModal()">
                 </div>            
             </div>
         </div>
     </nav>
+    <div id="logout-modal" class="modal">
+        <div class="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <div id="loading-spinner" style="display: none;">
+                <i class="fas fa-spinner fa-spin"></i> Logging out...
+            </div>
+            <div class="modal-buttons">
+                <button onclick="proceedLogout()" id="confirm-btn">Yes</button>
+                <button onclick="closeModal()">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Session Warning Modal -->
+    <div id="session-warning-modal" class="modal">
+        <div class="modal-content warning">
+            <span class="material-icons warning-model-icon" style="color:orange; font-size:90px;">warning_amber</span>
+            <p><strong>Your session is about to expire.</strong><br>You will be logged out in 60 seconds.</p>
+            <div class="modal-buttons">
+                <button onclick="logout()">Log Out</button>
+                <button onclick="continueSession()">Continue Session</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Session Expired Modal -->
+    <div id="session-expired-modal" class="modal">
+        <div class="modal-content expired">
+        <svg width="150px" height="150px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="14" rx="2" ry="2" stroke="#2563EB" stroke-width="2" fill="#E0F2FE"></rect>
+            <path d="M12 7v4l3 2" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="18" cy="18" r="2" fill="#2563EB"></circle>
+        </svg>
+        <h2>Your session has expired</h2>
+        <p>Please log in again. We kept your filters and breakdowns in place.</p>
+        <button onclick="location.href='/auth/login?timeout'" class="button">Refresh</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
 </body>
+<div class="profile-modal-container" id="profileModal" style="display: none;">
+    <div class="profile-modal-arrow"></div>
+    <div class="profile-modal-content">
+        <ul class="profile-modal-content-li-container">
+            <li class="profile-modal-content-li">
+                <i class="fas fa-user profile-modal-content-icon"></i>
+                <a class="profile-modal-content-link content-link" th:href="@{/patient/profile}">Profile</a>
+            </li>
+            <li class="profile-modal-content-li">
+                <i class="fas fa-history profile-modal-content-icon"></i>
+                <a class="profile-modal-content-link content-link" th:href="@{/patient/appointmentHistory}">History</a>
+            </li>
+            
+            <button onclick="confirmLogout(event)" class="profile-modal-logout-btn">
+                <i class="fas fa-sign-out-alt profile-modal-content-icon"></i>
+                <a class="">Log Out</a>
+            </button>
+            <form id="logout-form" th:action="@{/auth/logout}" method="post" style="display: none;">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+            </form>
+        </ul>
+    </div>
+</div>
 <script th:src="@{/js/patient/about-us.js}"></script>
 <script th:src="@{/js/patient/patient-all.js}"></script>
 </html>
