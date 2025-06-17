@@ -445,3 +445,31 @@ button{
     color: #fff;
 }
   
+.bell-icon-container{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bell-icon-container:hover{
+    background-color: var(--hover-color);
+}
+
+.bell-icon{
+    font-size: 17px;
+    color: var(--primary-color);
+}
+
+.notification-dot{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+}

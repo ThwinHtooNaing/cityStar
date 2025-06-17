@@ -1,0 +1,104 @@
+.personal-info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.personal-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 100;
+    margin-bottom: 0.5rem;
+    color: rgb(129, 126, 126);
+    font-size: 0.8rem;
+}
+
+input {
+    padding: 0.60rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: none;
+}
+input[readonly] {
+    background-color: none;
+}
+input[readonly]:active{
+    outline: var(--primary-color) solid 2px;
+}
+input:active{
+    outline: var(--primary-color) solid 2px;
+}
+input:focus {
+    outline: var(--primary-color) solid 2px;
+}
+.main-profile-update-button {
+    background-color: var(--primary-color);
+    margin-right: 10px;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 15px;
+}
+
+.main-profile-update-button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.main-profile-container {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+.main-image-profile-container {
+    width: 370px;
+}
+
+.main-image-profile-info {
+    width: 100%;
+    flex: 1;
+}
+.main {
+    width: 100%;
+    margin-left: 15px;
+}
+
+.main-image-profile-info {
+    border-left: 1px dashed #898989;
+    padding: 0px 20px ;
+}
+
+.main-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    margin-top: 5px;
+}
+
+.main-image-container img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.main-profile-name-text {
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+.main-profile-email {
+    color: #898989;
+    margin: 13px 0;
+}

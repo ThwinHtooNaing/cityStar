@@ -49,9 +49,48 @@
         </div>
         <div class="logout-btn-container">
             <p>go back to main menu</p>
-            <button>Click Here</button>
+            <button onclick="window.location.href='/patient/home'">Back Now</button>
         </div>
     </nav>
+    <div class="main">
+        <div class="main-nav-container">
+            <span>Appointment History</span>
+            <div class="notification-container">
+                <div class="bell-icon-container">
+                    <i class="fa-solid fa-bell bell-icon"></i>
+                    <span class="notification-dot">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="session-warning-modal" class="modal">
+        <div class="modal-content warning">
+            <span class="material-icons warning-model-icon" style="color:orange; font-size:90px;">warning_amber</span>
+            <p><strong>Your session is about to expire.</strong><br>You will be logged out in 60 seconds.</p>
+            <div class="modal-buttons">
+                <button onclick="logout()">Log Out</button>
+                <button onclick="continueSession()">Continue Session</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Session Expired Modal -->
+    <div id="session-expired-modal" class="modal">
+        <div class="modal-content expired">
+        <svg width="150px" height="150px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="14" rx="2" ry="2" stroke="#2563EB" stroke-width="2" fill="#E0F2FE"></rect>
+            <path d="M12 7v4l3 2" stroke="#2563EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle cx="18" cy="18" r="2" fill="#2563EB"></circle>
+        </svg>
+        <h2>Your session has expired</h2>
+        <p>Please log in again. We kept your filters and breakdowns in place.</p>
+        <button onclick="location.href='/auth/login?timeout'" class="button">Refresh</button>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
 </body>
 <script th:src="@{/js/patient/appointment-history.js}"></script>
 <script th:src="@{/js/patient/patient-all.js}"></script>
