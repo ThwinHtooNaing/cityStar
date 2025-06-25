@@ -94,7 +94,8 @@ public class PatientController {
     }
 
     private PatientDTO getPatient(CustomUserDetails user){
-        return new PatientDTO(user.getFirstName(),user.getLastName(),user.getProfilePath());
+        Patient patient = (Patient) userService.findByEmail(user.getUsername());
+        return new PatientDTO(patient.getFirstName(),patient.getLastName(),patient.getProfilePath());
     }
     
     private PatientDTO getPatientProfile(Patient patient){

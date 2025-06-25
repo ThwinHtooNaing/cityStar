@@ -226,7 +226,7 @@ updateBtn.addEventListener("click", () => {
       originalImageSrc = profileImage.src;
       fileInput.value = "";
       setTimeout(()=> {
-        showToast("info", "Note", "Picture is uploading pls wait");
+        showToast("info", "Note", "updating info pls wait");
       },1000)
       setTimeout(() => {
         // Update name
