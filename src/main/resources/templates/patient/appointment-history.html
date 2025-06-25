@@ -63,6 +63,65 @@
                 </div>
             </div>
         </div>
+        <div class="appointment-history-container">
+            <div class="header appointment-history-header">
+                <h2 class="appointment-history-title">Appointment History</h2>
+                <span class="appointment-count">Total 3 Appointments</span>
+            </div>
+        
+            <table class="appointment-history-table">
+                <thead class="appointment-history-thead">
+                    <tr>
+                        <th class="col-patient-id">Patient ID</th>
+                        <th class="col-image">Image</th>
+                        <th class="col-name">Name</th>
+                        <th class="col-doctor">Doctor</th>
+                        <th class="col-date">Date</th>
+                        <th class="col-time">Time</th>
+                        <th class="col-diagnosis">Diagnosis</th>
+                        <th class="col-status">Status</th>
+                    </tr>
+                </thead>
+                <tbody class="appointment-history-tbody">
+                    <tr class="appointment-row">
+                        <td class="patient-id">PT00123</td>
+                        <td class="patient-image-cell">
+                            <img src="" alt="Patient" class="patient-img" />
+                        </td>
+                        <td class="patient-name">John Doe</td>
+                        <td class="doctor-name">Dr. Smith</td>
+                        <td class="appointment-date">22 Mar, 2025</td>
+                        <td class="appointment-time">09:30 AM</td>
+                        <td class="diagnosis">Malaria</td>
+                        <td class="status"><span class="badge under-treatment">Under Treatment</span></td>
+                    </tr>
+                    <tr class="appointment-row">
+                        <td class="patient-id">PT00145</td>
+                        <td class="patient-image-cell">
+                            <img src="" alt="Patient" class="patient-img" />
+                        </td>
+                        <td class="patient-name">Maria Lee</td>
+                        <td class="doctor-name">Dr. Taylor</td>
+                        <td class="appointment-date">10 Feb, 2025</td>
+                        <td class="appointment-time">02:00 PM</td>
+                        <td class="diagnosis">Viral Fever</td>
+                        <td class="status"><span class="badge cured">Cured</span></td>
+                    </tr>
+                    <tr class="appointment-row">
+                        <td class="patient-id">PT00160</td>
+                        <td class="patient-image-cell">
+                            <img src="" alt="Patient" class="patient-img" />
+                        </td>
+                        <td class="patient-name">David Kim</td>
+                        <td class="doctor-name">Dr. Khan</td>
+                        <td class="appointment-date">08 Jan, 2025</td>
+                        <td class="appointment-time">11:15 AM</td>
+                        <td class="diagnosis">Covid-19</td>
+                        <td class="status"><span class="badge under-treatment">Under Treatment</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>        
     </div>
     
     <div id="session-warning-modal" class="modal">

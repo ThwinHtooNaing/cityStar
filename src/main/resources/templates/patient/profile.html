@@ -63,6 +63,7 @@
                 </div>
             </div>
         </div>
+
         <div class="main-profile-container">
             <div class="main-image-profile-container">
                 <div class="main-image-container">
@@ -107,9 +108,51 @@
                 </div>`
             </div>
         </div>
-        <div class="patient-history-container">
 
-        </div>
+        <div class="patient-history-container">
+            <div class="header">
+              <h2>Patient History</h2>
+              <span>Total 0 Visits</span>
+            </div>
+            <table>
+                <thead>
+                  <tr>
+                    <th>Id</th>                <!-- From: appointmentId -->
+                    <th>Date Of Visit</th>     <!-- From: appointmentTime -->
+                    <th>Diagnosis</th>         <!-- From: appointmentInfo -->
+                    <th>Time</th>          <!-- Not in DTO, mock value -->
+                    <th>Total Visits</th>      <!-- Not in DTO, mock value -->
+                    <th>Status</th>            <!-- From: status enum -->        
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>102</td>               <!-- appointmentId -->
+                    <td>20 Jan, 2023</td>      <!-- appointmentTime -->
+                    <td>Malaria</td>           <!-- appointmentInfo -->
+                    <td>1:30</td> <!-- (Mocked) -->
+                    <td>2</td> <!-- (Mocked) -->
+                    <td><span class="badge under-treatment">Under Treatment</span></td> <!-- status -->
+                  </tr>
+                  <tr>
+                    <td>103</td>
+                    <td>12 Jan, 2022</td>
+                    <td>Viral Fever</td>
+                    <td>4:30</td>
+                    <td>1</td>
+                    <td><span class="badge cured">Cured</span></td>
+                  </tr>
+                  <tr>
+                    <td>104</td>
+                    <td>20 Jan, 2021</td>
+                    <td>Covid 19</td>
+                    <td>7:30</td>
+                    <td>6</td>
+                    <td><span class="badge cured">Cured</span></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>          
     </div>
 
     <div id="session-warning-modal" class="modal">

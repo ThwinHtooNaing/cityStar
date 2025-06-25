@@ -102,3 +102,79 @@ input:focus {
     color: #898989;
     margin: 13px 0;
 }
+
+.patient-history-container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.header h2 {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.header span {
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #f8f8f8;
+}
+
+th, td {
+    padding: 14px 10px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+tbody tr {
+    color: #5f5f5f;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+}
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85em;
+    display: inline-block;
+}
+
+.high {
+    background-color: #ffe5e5;
+    color: #e74c3c;
+}
+
+.low {
+    background-color: #e1f9ed;
+    color: #27ae60;
+}
+
+.cured {
+    background-color: #d4f7e2;
+    color: #2c8a4a;
+}
+
+.under-treatment {
+    background-color: #fbdada;
+    color: #c0392b;
+}
