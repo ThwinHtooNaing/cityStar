@@ -1,9 +1,14 @@
 package com.cityStar.controller;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cityStar.dto.PatientDTO;
 import com.cityStar.model.Patient;
@@ -13,6 +18,7 @@ import com.cityStar.service.PatientService;
 import com.cityStar.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 
 
 @Controller
@@ -51,6 +57,23 @@ public class PatientController {
         model.addAttribute("current_user", patient);
         model.addAttribute("patient_profile", patientProfile);
         return "patient/profile";
+    }
+
+    @PatchMapping("/profile")
+    @ResponseBody
+    public ResponseEntity<?> profile(@AuthenticationPrincipal CustomUserDetails user,
+                                     @RequestPart(value = "patient", required = false) PatientDTO patientDTO,
+                                     @RequestPart(required = false) MultipartFile file) {
+        try
+        {
+            patientService.updatePatientProfile(user.getUsername(), patientDTO, file);
+        }
+        catch (Exception e) {
+           return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("Failed Due to: " + e.getMessage());
+        }
+        return ResponseEntity.ok("Profile updated successfully.");
     }
 
     @GetMapping("/appointmentHistory")
