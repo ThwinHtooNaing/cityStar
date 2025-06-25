@@ -112,7 +112,6 @@ public class AuthController {
                                    BindingResult bindingResult,
                                    Model model) {
         if (bindingResult.hasErrors()) {
-            // model.addAttribute("errors", bindingResult.getAllErrors());
             model.addAttribute("doctor", new DoctorDTO());
             return "register";
         }

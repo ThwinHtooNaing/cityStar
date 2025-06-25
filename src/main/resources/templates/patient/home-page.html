@@ -81,18 +81,18 @@
                 <div class="time-slot-container">
                     <div class="time-slot">
                         <label>Start Time</label>
-                        <input type="time" id="start-time">
+                        <input type="time" id="start-time" disabled>
                     </div>
                     <div class="time-slot">
                         <label>End Time</label>
-                        <input type="time" id="end-time">
+                        <input type="time" id="end-time" disabled>
                     </div>
                 </div>
                 <div class="input-container">
-                    <input type="text" placeholder="search doctor for appointment" class="input">
+                    <input type="text" placeholder="search doctor for appointment" class="input" readonly>
                     <i class="input-icon"></i>
                 </div>
-                <button type="button" class="btn search-btn">Search</button>
+                <button type="button" class="btn search-btn" style="cursor: pointer;" onclick='window.location.href="/patient/findDoctor"'>Search</button>
             </div>
         </div>
         <!-- <div class="body">

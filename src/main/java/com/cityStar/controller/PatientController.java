@@ -22,7 +22,8 @@ public class PatientController {
     private final UserService userService;
     private final PatientService patientService;
     
-    public PatientController(UserService userService,PatientService patientService){
+    public PatientController(UserService userService,
+                             PatientService patientService){
         this.patientService = patientService;
         this.userService = userService;
     }
@@ -63,7 +64,7 @@ public class PatientController {
 
     @GetMapping("/aboutUs")
     public String AboutUS(@AuthenticationPrincipal CustomUserDetails user,
-                              Model model) {
+                           Model model) {
         PatientDTO patient = getPatient(user);
         model.addAttribute("current_user", patient);
         return "patient/about-us";

@@ -60,9 +60,8 @@
 }
 .doctor-list-container {
     background: #fff;
-    /* border-radius: 10px; */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    min-height: 80vh;
 }
 
 .doctor-list-header {
