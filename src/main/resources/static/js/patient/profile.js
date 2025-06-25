@@ -121,6 +121,18 @@ updateBtn.addEventListener("click", () => {
           }
         }
 
+        const navName = document.querySelector(".nav-profile-name");
+        if (navName) {
+          navName.textContent = fullName;
+        }
+
+        const navImage = document.querySelector(
+          ".nav-profile-image-container img"
+        );
+        if (navImage && imageChanged) {
+          navImage.src = originalImageSrc;
+        }
+
         showToast("success", "Success!", "Profile Updated");
         imageChanged = false;
       }, 3000);

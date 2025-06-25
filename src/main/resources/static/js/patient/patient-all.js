@@ -1,9 +1,3 @@
-// const profileImage = document.querySelector(".profile-image .img");
-// if (profileImage) {
-//   profileImage.addEventListener("click", function () {
-//     // window.location.href = "/patient/profile";
-//   });
-// }
 const csrfToken = document
   .querySelector('meta[name="_csrf"]')
   .getAttribute("content");
