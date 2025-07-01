@@ -1,5 +1,10 @@
 package com.cityStar.service;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,7 +64,8 @@ public class PatientService {
         userRepository.save(patient);
     }
 
-    public void createAppointment(AppointmentDTO dto,Patient patient) {
+    public void createAppointment(AppointmentDTO dto,
+                                  Patient patient) {
         Appointment appointment = new Appointment();
         appointment.setAppointmentInfo(dto.getAppointmentInfo());
         appointment.setAppointmentTime(dto.getAppointmentTime());
@@ -73,6 +79,22 @@ public class PatientService {
         appointmentRepository.save(appointment);
         availability.setIsAvailable(false);
         availabilityRepository.save(availability);
+    }
+
+    public List<Availability> searchTodayAvailabilities(String doctorName, 
+                                                        LocalTime start, 
+                                                        LocalTime end) {
+        LocalDate today = LocalDate.now();
+        String searchName = (doctorName != null && !doctorName.isBlank()) ? doctorName.toLowerCase() : null;
+
+        List<Availability> todayAvailabilities = availabilityRepository.findByAvailableDate(today);
+
+        return todayAvailabilities.stream()
+            .filter(a -> (searchName == null || 
+                        (a.getDoctor().getFirstName() + " " + a.getDoctor().getLastName()).toLowerCase().contains(searchName)) &&
+                        (start == null || !a.getStartTime().isBefore(start)) &&
+                        (end == null || !a.getEndTime().isAfter(end)))
+            .collect(Collectors.toList());
     }
     
 }

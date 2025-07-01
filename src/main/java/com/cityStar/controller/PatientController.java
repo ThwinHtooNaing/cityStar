@@ -1,6 +1,8 @@
 package com.cityStar.controller;
 
+import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -73,6 +76,22 @@ public class PatientController {
         return AvailabilityRowMapper.toDtoWithDoctor(availability);
     }
 
+    @GetMapping("/availabilities/search")
+    @ResponseBody
+    public List<AvailabilityDTO> searchAvailabilities(
+            @RequestParam(required = false) String doctorName,
+            @RequestParam(required = false) String startTime,
+            @RequestParam(required = false) String endTime) {
+
+        LocalTime start = (startTime != null && !startTime.isBlank()) ? LocalTime.parse(startTime) : null;
+        LocalTime end = (endTime != null && !endTime.isBlank()) ? LocalTime.parse(endTime) : null;
+
+        return patientService.searchTodayAvailabilities(doctorName, start, end)
+                            .stream()
+                            .map(AvailabilityRowMapper::toDtoWithDoctor)
+                            .collect(Collectors.toList());
+    }
+
     @PostMapping("/appointment")
     @ResponseBody
     public ResponseEntity<?> bookAppointment(@AuthenticationPrincipal CustomUserDetails user,
@@ -88,7 +107,6 @@ public class PatientController {
         }
     }
     
-
     @GetMapping("/profile")
     public String profile(@AuthenticationPrincipal CustomUserDetails user,
                            Model model) {
