@@ -127,6 +127,7 @@ body{
     border: none;
     border-radius: 50%;
     border: 1px solid gray;
+    object-fit: cover;
 }
 
 .profile-container {

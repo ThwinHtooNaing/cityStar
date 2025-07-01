@@ -1,6 +1,5 @@
 .body{
     background-color: var(--background-color);
-    /* margin-top: 10px; */
 }
 .search-section{
     display: flex;
@@ -57,6 +56,9 @@
     background-color: var(--primary-color);
     color: var(--text-color);
     border-radius: 10px;
+}
+.search-btn:hover{
+    cursor: pointer;
 }
 .doctor-list-container {
     background: #fff;
@@ -129,4 +131,72 @@
     margin-top: 10px;
     font-size: 14px;
     color: #888;
+}
+
+.custom-modal {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); z-index: 999;
+}
+  
+.custom-modal-content {
+    background: #fff; padding: 20px 30px;
+    margin: 8% auto; width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    font-family: sans-serif;
+    position: relative;
+}
+  
+.custom-close-button {
+    position: absolute; right: 15px; top: 15px;
+    font-size: 20px; cursor: pointer;
+}
+  
+h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+  
+.custom-form-group {
+    margin-bottom: 15px;
+}
+  
+.custom-form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+  
+.custom-form-group input[type="time"],
+.custom-form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+  
+.custom-form-group textarea {
+    resize: vertical;
+}
+  
+.custom-submit-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+  
+.custom-submit-btn:hover {
+    background-color: var(--primary-hover-color);
 }

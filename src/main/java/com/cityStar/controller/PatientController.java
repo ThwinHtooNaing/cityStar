@@ -12,9 +12,12 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cityStar.dto.AppointmentDTO;
 import com.cityStar.dto.AvailabilityDTO;
 import com.cityStar.dto.PatientDTO;
+import com.cityStar.model.Availability;
 import com.cityStar.model.Patient;
+import com.cityStar.rowmapper.AvailabilityRowMapper;
 import com.cityStar.rowmapper.PatientRowMapper;
 import com.cityStar.security.CustomUserDetails;
 import com.cityStar.service.DoctorService;
@@ -23,6 +26,10 @@ import com.cityStar.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -58,6 +65,29 @@ public class PatientController {
         model.addAttribute("current_user", patient);
         return "patient/find-Doctor";
     }
+
+    @GetMapping("/availability/{id}")
+    @ResponseBody
+    public AvailabilityDTO getAvailabilityById(@PathVariable Long id) {
+        Availability availability = doctorService.findByAvailabilityId(id);
+        return AvailabilityRowMapper.toDtoWithDoctor(availability);
+    }
+
+    @PostMapping("/appointment")
+    @ResponseBody
+    public ResponseEntity<?> bookAppointment(@AuthenticationPrincipal CustomUserDetails user,
+                                            @RequestBody AppointmentDTO appointmentDTO) {
+        try {
+            Patient patient = (Patient) userService.findByEmail(user.getUsername());
+            patientService.createAppointment(appointmentDTO, patient);
+            return ResponseEntity.ok("Appointment booked successfully");
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to book appointment: " + e.getMessage());
+        }
+    }
+    
 
     @GetMapping("/profile")
     public String profile(@AuthenticationPrincipal CustomUserDetails user,

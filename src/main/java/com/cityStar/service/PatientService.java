@@ -3,9 +3,14 @@ package com.cityStar.service;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cityStar.dto.AppointmentDTO;
 import com.cityStar.dto.PatientDTO;
+import com.cityStar.enums.Status;
+import com.cityStar.model.Appointment;
+import com.cityStar.model.Availability;
 import com.cityStar.model.Patient;
 import com.cityStar.repository.IappointmentRepository;
+import com.cityStar.repository.IavailabilityRepository;
 import com.cityStar.repository.IpatientRepository;
 import com.cityStar.repository.IuserRepository;
 
@@ -16,15 +21,18 @@ public class PatientService {
     private final StorageService storageService;
     private final IpatientRepository patientRepository;
     private final IappointmentRepository appointmentRepository;
+    private final IavailabilityRepository availabilityRepository;
 
     public PatientService(IuserRepository userRepository,
                           StorageService storageService,
                           IpatientRepository patientRepository,
-                          IappointmentRepository appointmentRepository) {
+                          IappointmentRepository appointmentRepository,
+                          IavailabilityRepository availabilityRepository) {
         this.userRepository = userRepository;
         this.storageService = storageService;
         this.patientRepository = patientRepository;
         this.appointmentRepository = appointmentRepository;
+        this.availabilityRepository = availabilityRepository;
     }
 
     public void updatePatientProfile(String email,
@@ -50,4 +58,21 @@ public class PatientService {
 
         userRepository.save(patient);
     }
+
+    public void createAppointment(AppointmentDTO dto,Patient patient) {
+        Appointment appointment = new Appointment();
+        appointment.setAppointmentInfo(dto.getAppointmentInfo());
+        appointment.setAppointmentTime(dto.getAppointmentTime());
+
+        Availability availability = availabilityRepository.findById(
+            dto.getAvailability().getAvailabilityId())
+            .orElseThrow(() -> new RuntimeException("Availability not found"));
+        appointment.setAvailability(availability);
+        appointment.setPatient(patient);
+        appointment.setStatus(Status.Pending);
+        appointmentRepository.save(appointment);
+        availability.setIsAvailable(false);
+        availabilityRepository.save(availability);
+    }
+    
 }

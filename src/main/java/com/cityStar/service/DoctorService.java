@@ -34,13 +34,19 @@ public class DoctorService {
         this.storageService = storageService;
     }
 
+    public Availability findByAvailabilityId(Long id) {
+        return availabilityrepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Availability not found"));
+    }
+
     public void addAvailability(Availability availability) {
+        availability.setIsAvailable(true);
         availabilityrepo.save(availability);
     }
 
     public List<AvailabilityDTO> getAllAvailabilitiesForToday() {
         LocalDate today = LocalDate.now();
-        List<Availability> availabilities = availabilityrepo.findByAvailableDate(today);
+        List<Availability> availabilities = availabilityrepo.findByAvailableDateAndIsAvailableTrue(today);
         return availabilities.stream()
             .map(AvailabilityRowMapper::toDtoWithDoctor)
             .collect(Collectors.toList());    

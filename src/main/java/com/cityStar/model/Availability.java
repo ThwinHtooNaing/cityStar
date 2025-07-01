@@ -27,6 +27,7 @@ public class Availability {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
+    private Boolean isAvailable;    
     private LocalDate availableDate;
     private LocalTime startTime;
     private LocalTime endTime;

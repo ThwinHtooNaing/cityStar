@@ -66,7 +66,7 @@
             <div class="doctor-list-header">
                 <div class="doctor-list-title">
                     <h2>Available Doctors</h2>
-                    <span class="doctor-count">Total 3 Doctors</span>
+                    <span th:text="${availabilities.size()} + ' doctors available today'"></span>
                 </div>
                 <div class="search-input-container">
                     <div class="time-slot-container">
@@ -202,6 +202,41 @@
             </div>
         </div>
     </div>
+
+    <div id="custom-appointment-modal" class="custom-modal">
+        <form class="custom-modal-content" id="custom-appointment-form">
+          <span class="custom-close-button" onclick="closeAppointmentModal()">&times;</span>
+          <h3>Appointment Details</h3>
+      
+          <div class="custom-form-group">
+            <label>Doctor:</label>
+            <span id="custom-doctor-name"></span>
+          </div>
+      
+          <div class="custom-form-group">
+            <label>Speciality:</label>
+            <span id="custom-doctor-speciality"></span>
+          </div>
+      
+          <div class="custom-form-group">
+            <label>Date:</label>
+            <span id="custom-available-date"></span>
+          </div>
+      
+          <div class="custom-form-group">
+            <label for="custom-appointment-time">Time:</label>
+            <input type="time" id="custom-appointment-time" name="appointmentTime" required />
+          </div>
+      
+          <div class="custom-form-group">
+            <label for="custom-appointment-info">Appointment Info:</label>
+            <textarea id="custom-appointment-info" name="appointmentInfo" rows="3" required></textarea>
+          </div>
+      
+          <button type="submit" class="custom-submit-btn">Book Appointment</button>
+        </form>
+    </div>
+      
 
     <!-- Session Warning Modal -->
     <div id="session-warning-modal" class="modal">
