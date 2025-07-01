@@ -17,4 +17,15 @@ public class AppointmentRowMapper {
                 .patient(patient)
                 .build();
     }
+
+    public static AppointmentDTO toDto(Appointment appointment) {
+        return AppointmentDTO.builder()
+                .appointmentId(appointment.getAppointmentId())
+                .appointmentInfo(appointment.getAppointmentInfo())
+                .appointmentTime(appointment.getAppointmentTime())
+                .status(appointment.getStatus())
+                .availability(AvailabilityRowMapper.toDtoWithDoctor(appointment.getAvailability()))
+                .patient(PatientRowMapper.toDtoWithoutPassword(appointment.getPatient())) // You can add a PatientDTO if needed
+                .build();
+    }
 }

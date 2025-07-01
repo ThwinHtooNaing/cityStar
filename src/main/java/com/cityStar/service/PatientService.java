@@ -18,6 +18,7 @@ import com.cityStar.repository.IappointmentRepository;
 import com.cityStar.repository.IavailabilityRepository;
 import com.cityStar.repository.IpatientRepository;
 import com.cityStar.repository.IuserRepository;
+import com.cityStar.rowmapper.AppointmentRowMapper;
 
 @Service
 public class PatientService {
@@ -79,6 +80,19 @@ public class PatientService {
         appointmentRepository.save(appointment);
         availability.setIsAvailable(false);
         availabilityRepository.save(availability);
+    }
+
+    public List<AppointmentDTO> getAppointmentDTOsByPatient(Patient patient) {
+        return appointmentRepository.findByPatient(patient).stream()
+                .map(AppointmentRowMapper::toDto) // make sure you have this mapper
+                .collect(Collectors.toList());
+    }
+
+    public List<AppointmentDTO> getTop3AppointmentDTOsByPatient(Patient patient) {
+        return appointmentRepository.findByPatient(patient).stream()
+                .limit(3)
+                .map(AppointmentRowMapper::toDto)
+                .collect(Collectors.toList());
     }
 
     public List<Availability> searchTodayAvailabilities(String doctorName, 

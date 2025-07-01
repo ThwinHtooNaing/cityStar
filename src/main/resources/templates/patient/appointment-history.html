@@ -66,14 +66,13 @@
         <div class="appointment-history-container">
             <div class="header appointment-history-header">
                 <h2 class="appointment-history-title">Appointment History</h2>
-                <span class="appointment-count">Total 3 Appointments</span>
+                <span class="appointment-count">Total <span th:text="${appointments.size()}"></span> Appointments</span>
             </div>
         
             <table class="appointment-history-table">
                 <thead class="appointment-history-thead">
                     <tr>
-                        <th class="col-patient-id">Patient ID</th>
-                        <th class="col-image">Image</th>
+                        <th class="col-appointment-id">Appointment ID</th>
                         <th class="col-name">Name</th>
                         <th class="col-doctor">Doctor</th>
                         <th class="col-date">Date</th>
@@ -83,43 +82,24 @@
                     </tr>
                 </thead>
                 <tbody class="appointment-history-tbody">
-                    <tr class="appointment-row">
-                        <td class="patient-id">PT00123</td>
-                        <td class="patient-image-cell">
-                            <img src="" alt="Patient" class="patient-img" />
-                        </td>
-                        <td class="patient-name">John Doe</td>
-                        <td class="doctor-name">Dr. Smith</td>
-                        <td class="appointment-date">22 Mar, 2025</td>
-                        <td class="appointment-time">09:30 AM</td>
-                        <td class="diagnosis">Malaria</td>
-                        <td class="status"><span class="badge under-treatment">Under Treatment</span></td>
+                    <tr class="appointment-row" th:each="appointment : ${appointments}">
+                      <td class="appointment-id" th:text="${'#APT00'+appointment.appointmentId}">APPT_ID</td>
+                      <td class="patient-name" th:text="${current_user.firstName + ' ' + current_user.lastName}">Patient Name</td>
+                      <td class="doctor-name" th:text="${'Dr. ' + appointment.availability.doctor.firstName + ' ' + appointment.availability.doctor.lastName}">
+                        Doctor Name
+                      </td>
+                      <td class="appointment-date" th:text="${#temporals.format(appointment.appointmentTime, 'dd MMM, yyyy')}">Date</td>
+                      <td class="appointment-time" th:text="${#temporals.format(appointment.appointmentTime, 'hh:mm a')}">Time</td>
+                      <td class="diagnosis" th:text="${appointment.appointmentInfo}">Diagnosis</td>
+                      <td class="status">
+                        <span class="badge"
+                              th:classappend="${appointment.status.name().toLowerCase()}"
+                              th:text="${appointment.status.name()}">
+                          Status
+                        </span>
+                      </td>
                     </tr>
-                    <tr class="appointment-row">
-                        <td class="patient-id">PT00145</td>
-                        <td class="patient-image-cell">
-                            <img src="" alt="Patient" class="patient-img" />
-                        </td>
-                        <td class="patient-name">Maria Lee</td>
-                        <td class="doctor-name">Dr. Taylor</td>
-                        <td class="appointment-date">10 Feb, 2025</td>
-                        <td class="appointment-time">02:00 PM</td>
-                        <td class="diagnosis">Viral Fever</td>
-                        <td class="status"><span class="badge cured">Cured</span></td>
-                    </tr>
-                    <tr class="appointment-row">
-                        <td class="patient-id">PT00160</td>
-                        <td class="patient-image-cell">
-                            <img src="" alt="Patient" class="patient-img" />
-                        </td>
-                        <td class="patient-name">David Kim</td>
-                        <td class="doctor-name">Dr. Khan</td>
-                        <td class="appointment-date">08 Jan, 2025</td>
-                        <td class="appointment-time">11:15 AM</td>
-                        <td class="diagnosis">Covid-19</td>
-                        <td class="status"><span class="badge under-treatment">Under Treatment</span></td>
-                    </tr>
-                </tbody>
+                  </tbody>
             </table>
         </div>        
     </div>

@@ -176,6 +176,7 @@
     height: 35px;
     border: none;
     border-radius: 50%;
+    object-fit: cover;
     border: 1px solid gray;
 }
 .aside.collapsed{

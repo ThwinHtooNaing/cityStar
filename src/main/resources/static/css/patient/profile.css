@@ -181,15 +181,21 @@ tbody tr:hover {
     color: #27ae60;
 }
 
-.cured {
+.pending {
+    background-color: #dae4fb;
+    color: #2d79c4;
+}
+
+.confirmed {
     background-color: #d4f7e2;
     color: #2c8a4a;
 }
 
-.under-treatment {
-    background-color: #fbdada;
-    color: #c0392b;
+.cancelled {
+    background-color: #f4acac;
+    color: #d53936;
 }
+
 .camera-icon {
     bottom: 7px;
     right: 5px;

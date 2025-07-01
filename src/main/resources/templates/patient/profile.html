@@ -119,44 +119,39 @@
               <span>Total 0 Visits</span>
             </div>
             <table>
-                <thead>
-                  <tr>
-                    <th>Id</th>                <!-- From: appointmentId -->
-                    <th>Date Of Visit</th>     <!-- From: appointmentTime -->
-                    <th>Diagnosis</th>         <!-- From: appointmentInfo -->
-                    <th>Time</th>          <!-- Not in DTO, mock value -->
-                    <th>Total Visits</th>      <!-- Not in DTO, mock value -->
-                    <th>Status</th>            <!-- From: status enum -->        
-                  </tr>
+                <thead class="appointment-history-thead">
+                    <tr>
+                        <th class="col-appointment-id">Appointment ID</th>
+                        <th class="col-name">Name</th>
+                        <th class="col-doctor">Doctor</th>
+                        <th class="col-date">Date</th>
+                        <th class="col-time">Time</th>
+                        <th class="col-diagnosis">Diagnosis</th>
+                        <th class="col-status">Status</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>102</td>               <!-- appointmentId -->
-                    <td>20 Jan, 2023</td>      <!-- appointmentTime -->
-                    <td>Malaria</td>           <!-- appointmentInfo -->
-                    <td>1:30</td> <!-- (Mocked) -->
-                    <td>2</td> <!-- (Mocked) -->
-                    <td><span class="badge under-treatment">Under Treatment</span></td> <!-- status -->
-                  </tr>
-                  <tr>
-                    <td>103</td>
-                    <td>12 Jan, 2022</td>
-                    <td>Viral Fever</td>
-                    <td>4:30</td>
-                    <td>1</td>
-                    <td><span class="badge cured">Cured</span></td>
-                  </tr>
-                  <tr>
-                    <td>104</td>
-                    <td>20 Jan, 2021</td>
-                    <td>Covid 19</td>
-                    <td>7:30</td>
-                    <td>6</td>
-                    <td><span class="badge cured">Cured</span></td>
-                  </tr>
-                </tbody>
+                    <tr class="appointment-row" th:each="appointment : ${appointments}">
+                      <td class="appointment-id" th:text="${'#APT00'+appointment.appointmentId}">APPT_ID</td>
+                      <td class="patient-name" th:text="${current_user.firstName + ' ' + current_user.lastName}">Patient Name</td>
+                      <td class="doctor-name" th:text="${'Dr. ' + appointment.availability.doctor.firstName + ' ' + appointment.availability.doctor.lastName}">
+                        Doctor Name
+                      </td>
+                      <td class="appointment-date" th:text="${#temporals.format(appointment.appointmentTime, 'dd MMM, yyyy')}">Date</td>
+                      <td class="appointment-time" th:text="${#temporals.format(appointment.appointmentTime, 'hh:mm a')}">Time</td>
+                      <td class="diagnosis" th:text="${appointment.appointmentInfo}">Diagnosis</td>
+                      <td class="status">
+                        <span class="badge"
+                              th:classappend="${appointment.status.name().toLowerCase()}"
+                              th:text="${appointment.status.name()}">
+                          Status
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
               </table>
-        </div>          
+        </div> 
+        
     </div>
 
     <div id="session-warning-modal" class="modal">

@@ -24,6 +24,7 @@ import com.cityStar.rowmapper.AvailabilityRowMapper;
 import com.cityStar.rowmapper.PatientRowMapper;
 import com.cityStar.security.CustomUserDetails;
 import com.cityStar.service.DoctorService;
+import com.cityStar.service.NotificationService;
 import com.cityStar.service.PatientService;
 import com.cityStar.service.UserService;
 
@@ -42,13 +43,15 @@ public class PatientController {
     private final UserService userService;
     private final PatientService patientService;
     private final DoctorService doctorService;
-    
+    private final NotificationService notificationService;
     public PatientController(UserService userService,
                              PatientService patientService,
-                             DoctorService doctorService) {
+                             DoctorService doctorService,
+                             NotificationService notificationService) {
         this.patientService = patientService;
         this.userService = userService;
         this.doctorService = doctorService;
+        this.notificationService = notificationService;
     }
     @GetMapping("/home")
     public String Home(@AuthenticationPrincipal CustomUserDetails user,
@@ -99,6 +102,7 @@ public class PatientController {
         try {
             Patient patient = (Patient) userService.findByEmail(user.getUsername());
             patientService.createAppointment(appointmentDTO, patient);
+            notificationService.createNotification(patient, "Your appointment has been booked successfully.");
             return ResponseEntity.ok("Appointment booked successfully");
         } catch (Exception e) {
             return ResponseEntity
@@ -112,6 +116,8 @@ public class PatientController {
                            Model model) {
         PatientDTO patient = getPatient(user);
         PatientDTO patientProfile = getPatientProfile((Patient) userService.findByEmail(user.getUsername()));
+        List<AppointmentDTO> appointments = patientService.getTop3AppointmentDTOsByPatient((Patient) userService.findByEmail(user.getUsername()));
+        model.addAttribute("appointments", appointments);
         model.addAttribute("current_user", patient);
         model.addAttribute("patient_profile", patientProfile);
         return "patient/profile";
@@ -138,7 +144,9 @@ public class PatientController {
     public String appointmentHistory(@AuthenticationPrincipal CustomUserDetails user,
                                       Model model) {
         PatientDTO patient = getPatient(user);
+        List<AppointmentDTO> appointments = patientService.getAppointmentDTOsByPatient((Patient) userService.findByEmail(user.getUsername()));
         model.addAttribute("current_user", patient);
+        model.addAttribute("appointments", appointments);
         return "patient/appointment-history";
     }
     
