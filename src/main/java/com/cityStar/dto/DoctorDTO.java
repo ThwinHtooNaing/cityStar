@@ -20,6 +20,7 @@ public class DoctorDTO extends UserDTO {
 
     @NotBlank
     private String speciality;
+    
     private List<AvailabilityDTO> availabilities;
 
     public DoctorDTO(Long id,String firstName, String middleName, String lastName, String email, String password, String address, Integer age, Role role, String profilePath, String bio, String contactInfo, String speciality) {

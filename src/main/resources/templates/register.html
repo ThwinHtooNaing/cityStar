@@ -108,14 +108,14 @@
                                         <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="error-message"></p>
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" th:name="contactInfo" placeholder="" class="form-control" aria-labelledby="placeholder-contactInfo"  required value="">
+                                        <input type="text" th:name="contactInfo" placeholder="" class="form-control" aria-labelledby="placeholder-contactInfo"  required value="" th:field="*{contactInfo}">
                                         <label class="placeholder-text" for="contactInfo" id="placeholder-contactInfo">
                                             <div class="text" >Contact Info</div>
                                         </label>
                                         <p th:if="${#fields.hasErrors('contactInfo')}" th:errors="*{contactInfo}" class="error-message"></p>
                                     </div>  
                                     <div class="form-group">
-                                        <input type="text" th:filed="*{speciality}" placeholder="" class="form-control" aria-labelledby="placeholder-speciality" id="speciality" required value="">
+                                        <input type="text" th:name="speciality" th:filed="*{speciality}" placeholder="" class="form-control" aria-labelledby="placeholder-speciality" id="speciality" required value="">
                                         <label class="placeholder-text" for="speciality">
                                             <div class="text">Speciality</div>
                                         </label>

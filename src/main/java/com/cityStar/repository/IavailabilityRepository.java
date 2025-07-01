@@ -14,5 +14,4 @@ public interface IavailabilityRepository extends JpaRepository<Availability,Long
     List<Availability> findByAvailableDate(LocalDate date);
     Optional<Availability> findTopByAvailableDateOrderByAvailabilityIdDesc(LocalDate Date);
     Optional<Availability> findTopByAvailableDateAndDoctorOrderByAvailabilityIdDesc(LocalDate availableDate, Doctor doctor);
-
 }

@@ -1,5 +1,7 @@
 package com.cityStar.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -10,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cityStar.dto.AvailabilityDTO;
 import com.cityStar.dto.PatientDTO;
 import com.cityStar.model.Patient;
 import com.cityStar.rowmapper.PatientRowMapper;
 import com.cityStar.security.CustomUserDetails;
+import com.cityStar.service.DoctorService;
 import com.cityStar.service.PatientService;
 import com.cityStar.service.UserService;
 
@@ -27,11 +31,14 @@ public class PatientController {
     
     private final UserService userService;
     private final PatientService patientService;
+    private final DoctorService doctorService;
     
     public PatientController(UserService userService,
-                             PatientService patientService){
+                             PatientService patientService,
+                             DoctorService doctorService) {
         this.patientService = patientService;
         this.userService = userService;
+        this.doctorService = doctorService;
     }
     @GetMapping("/home")
     public String Home(@AuthenticationPrincipal CustomUserDetails user,
@@ -41,10 +48,13 @@ public class PatientController {
         return "patient/home-page";
     }
 
+    
     @GetMapping("/findDoctor")
     public String FindDoctor(@AuthenticationPrincipal CustomUserDetails user,
                               Model model) {
         PatientDTO patient = getPatient(user);
+        List<AvailabilityDTO> availabilities = doctorService.getAllAvailabilitiesForToday();
+        model.addAttribute("availabilities", availabilities);
         model.addAttribute("current_user", patient);
         return "patient/find-Doctor";
     }

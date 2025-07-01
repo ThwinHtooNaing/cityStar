@@ -2,16 +2,20 @@ package com.cityStar.service;
 
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cityStar.dto.AvailabilityDTO;
 import com.cityStar.dto.DoctorDTO;
 import com.cityStar.model.Availability;
 import com.cityStar.model.Doctor;
 import com.cityStar.repository.IavailabilityRepository;
 import com.cityStar.repository.IdoctorRepository;
 import com.cityStar.repository.IuserRepository;
+import com.cityStar.rowmapper.AvailabilityRowMapper;
 
 @Service
 public class DoctorService {
@@ -32,6 +36,14 @@ public class DoctorService {
 
     public void addAvailability(Availability availability) {
         availabilityrepo.save(availability);
+    }
+
+    public List<AvailabilityDTO> getAllAvailabilitiesForToday() {
+        LocalDate today = LocalDate.now();
+        List<Availability> availabilities = availabilityrepo.findByAvailableDate(today);
+        return availabilities.stream()
+            .map(AvailabilityRowMapper::toDtoWithDoctor)
+            .collect(Collectors.toList());    
     }
 
     public Availability getLatestAvailabilityForToday(String email) {
