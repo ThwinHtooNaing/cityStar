@@ -141,6 +141,13 @@ public class DoctorController {
         return doctorService.getAppointmentCountsByStatusForDoctor(doctor);
     }
 
+    @GetMapping("/today-top-pending")
+    @ResponseBody
+    public List<AppointmentDTO> getTodayTopThreePendingAppointments(@AuthenticationPrincipal UserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.getTopThreePendingTodayForDoctor(doctor);
+    }
+
     @PatchMapping("/update-status/{id}")
     @ResponseBody
     public ResponseEntity<Void> updateAppointmentStatus(

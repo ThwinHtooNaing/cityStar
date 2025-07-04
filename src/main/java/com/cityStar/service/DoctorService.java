@@ -1,7 +1,8 @@
 package com.cityStar.service;
 
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -142,5 +143,20 @@ public class DoctorService {
         counts.put("cancelled", cancelled);
 
         return counts;
+    }
+
+    public List<AppointmentDTO> getTopThreePendingTodayForDoctor(Doctor doctor) {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+
+        List<Appointment> appointments = appointmentRepository
+            .findTop3ByAvailability_DoctorAndStatusAndAppointmentTimeBetweenOrderByAppointmentTimeAsc(
+                doctor, Status.Pending, startOfDay, endOfDay
+            );
+
+        return appointments.stream()
+                .map(AppointmentRowMapper::toDto)
+                .toList();
     }
 }

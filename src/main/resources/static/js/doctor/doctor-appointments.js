@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
       tr.className = "appointment-row";
       const id = `#${a.appointmentId.toString().padStart(3, "0")}`;
       const time = new Date(a.appointmentTime).toLocaleString();
-      const isEditable = status === "" || status === "Pending";
+      const isEditable = a.status.toLowerCase() === "pending";
       tr.innerHTML = `
               <div>${id}</div>
               <div><img class="appointment-img" src="${
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
           })
             .then((res) => {
               if (res.ok) {
-                fetchAppointments(status); // reload table
+                fetchAppointments(status); // reload tabl
                 updateCounts(); // refresh counts
               }
             })
