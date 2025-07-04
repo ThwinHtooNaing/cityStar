@@ -164,6 +164,20 @@ public class DoctorController {
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
         return doctorService.getDoctorAppointmentStats(doctor);
     }
+
+    @GetMapping("/monthly-new-patient-count")
+    @ResponseBody
+    public long getMonthlyNewPatientCount(@AuthenticationPrincipal UserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.countUniquePatientsThisMonth(doctor);
+    }
+
+    @GetMapping("/monthly-patient-chart")
+    @ResponseBody
+    public Map<Integer, Long> getMonthlyPatientChart(@AuthenticationPrincipal UserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.getDailyPatientCountsForMonth(doctor);
+    }
     
     private DoctorDTO getDoctor(CustomUserDetails user){
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());

@@ -169,6 +169,39 @@ public class DoctorService {
         return stats;
     }
 
+    public Map<Integer, Long> getDailyPatientCountsForMonth(Doctor doctor) {
+        YearMonth currentMonth = YearMonth.now();
+        LocalDateTime start = currentMonth.atDay(1).atStartOfDay();
+        LocalDateTime end = currentMonth.atEndOfMonth().plusDays(1).atStartOfDay();
+    
+        List<Appointment> appointments = appointmentRepository
+                .findByAvailability_DoctorAndAppointmentTimeBetween(doctor, start, end);
+    
+        return appointments.stream()
+            .collect(Collectors.groupingBy(
+                a -> a.getAppointmentTime().getDayOfMonth(),
+                Collectors.collectingAndThen(
+                    Collectors.mapping(Appointment::getPatient, Collectors.toSet()),
+                    set -> (long) set.size()
+                )
+            ));
+    }
+    
+    public long countUniquePatientsThisMonth(Doctor doctor) {
+        YearMonth thisMonth = YearMonth.now();
+        LocalDateTime start = thisMonth.atDay(1).atStartOfDay();
+        LocalDateTime end = thisMonth.atEndOfMonth().plusDays(1).atStartOfDay();
+    
+        List<Appointment> appointments = appointmentRepository.findByAvailability_DoctorAndAppointmentTimeBetween(
+            doctor, start, end
+        );
+    
+        return appointments.stream()
+            .map(Appointment::getPatient)
+            .distinct()
+            .count();
+    }
+
     private long countTodayAppointments(Doctor doctor) {
         return getAppointmentsForDoctorInRange(doctor, getStartOfToday(), getEndOfToday()).size();
     }

@@ -361,72 +361,84 @@
 </script>  
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  const ctx = document.getElementById('patientsChart').getContext('2d');
-
-  const monthName = now.toLocaleString('default', { month: 'short' });
-  const daysInMonth = new Date(year, now.getMonth() + 1, 0).getDate();
-
-  const labels = Array.from({ length: daysInMonth }, (_, i) => `${monthName} ${i + 1}`);
-  const dataPoints = Array.from({ length: daysInMonth }, () => Math.floor(Math.random() * 20)); // Fake data for now
-
-  const chart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'New Patients',
-        data: dataPoints,
-        borderColor: '#4f46e5',
-        backgroundColor: 'rgba(79, 70, 229, 0.1)',
-        fill: true,
-        tension: 0.4,
-        pointRadius: 4,
-        pointHoverRadius: 6,
-        pointBackgroundColor: '#fff',
-        pointBorderColor: '#4f46e5',
-        pointHoverBorderColor: '#4f46e5',
-        pointHoverBackgroundColor: '#4f46e5'
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false, 
-      plugins: {
-        tooltip: {
-          backgroundColor: '#222',
-          titleColor: '#fff',
-          bodyColor: '#fff',
-          padding: 10,
-          cornerRadius: 8,
-          callbacks: {
-            title: (items) => items[0].label,
-            label: (item) => `${item.raw} Patients`
-          }
-        },
-        legend: { display: false }
-      },
-      scales: {
-        x: {
-          ticks: {
-            maxRotation: 0,
-            minRotation: 0,
-            callback: function(value, index) {
-              // Show only every 5th label to reduce clutter
-              return index % 5 === 0 ? this.getLabelForValue(value) : '';
-            }
-          },
-          grid: { display: false }
-        },
-        y: {
-          beginAtZero: true,
-          grid: { color: '#eee' },
-          ticks: {
-            stepSize: 5
+    const ctx = document.getElementById('patientsChart').getContext('2d');
+  
+    const monthf = now.getMonth(); // 0-based
+    const monthName = now.toLocaleString('default', { monthf: 'short' });
+    const daysInMonth = new Date(year, monthf + 1, 0).getDate();
+  
+    const labels = Array.from({ length: daysInMonth }, (_, i) => `${monthName} ${i + 1}`);
+    const dataPoints = new Array(daysInMonth).fill(0);
+  
+    fetch("/doctor/monthly-patient-chart")
+      .then(res => res.json())
+      .then(data => {
+        for (let day in data) {
+          const index = parseInt(day) - 1;
+          if (index >= 0 && index < dataPoints.length) {
+            dataPoints[index] = data[day];
           }
         }
-      }
-    }
-  });
+  
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'New Patients',
+              data: dataPoints,
+              borderColor: '#4f46e5',
+              backgroundColor: 'rgba(79, 70, 229, 0.1)',
+              fill: true,
+              tension: 0.4,
+              pointRadius: 4,
+              pointHoverRadius: 6,
+              pointBackgroundColor: '#fff',
+              pointBorderColor: '#4f46e5',
+              pointHoverBorderColor: '#4f46e5',
+              pointHoverBackgroundColor: '#4f46e5'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              tooltip: {
+                backgroundColor: '#222',
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                padding: 10,
+                cornerRadius: 8,
+                callbacks: {
+                  title: (items) => items[0].label,
+                  label: (item) => `${item.raw} Patients`
+                }
+              },
+              legend: { display: false }
+            },
+            scales: {
+              x: {
+                ticks: {
+                  maxRotation: 0,
+                  minRotation: 0,
+                  callback: function(value, index) {
+                    return index % 5 === 0 ? this.getLabelForValue(value) : '';
+                  }
+                },
+                grid: { display: false }
+              },
+              y: {
+                beginAtZero: true,
+                grid: { color: '#eee' },
+                ticks: {
+                  stepSize: 5
+                }
+              }
+            }
+          }
+        });
+      });
 </script>
+  
 
 </html>

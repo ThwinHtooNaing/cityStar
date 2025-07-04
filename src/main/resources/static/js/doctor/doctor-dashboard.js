@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchTodayTopPending(); 
   loadDashboardStats();
+  loadMonthlyPatientCount();
 });
 
 function loadDashboardStats() {
@@ -91,5 +92,13 @@ function loadDashboardStats() {
           countElement.textContent = stats.newAppointments;
         }
       });
+    });
+}
+
+function loadMonthlyPatientCount() {
+  fetch("/doctor/monthly-new-patient-count")
+    .then((res) => res.json())
+    .then((count) => {
+      document.querySelector(".patient-count").textContent = count;
     });
 }
