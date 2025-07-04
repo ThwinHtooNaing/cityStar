@@ -132,11 +132,6 @@ public class DoctorService {
         long confirmed = appointmentRepository.countByAvailability_DoctorAndStatus(doctor, Status.Confirmed);
         long cancelled = appointmentRepository.countByAvailability_DoctorAndStatus(doctor, Status.Cancelled);
 
-        System.out.println("All: " + all);
-        System.out.println("Pending: " + pending);
-        System.out.println("Confirmed: " + confirmed);
-        System.out.println("Cancelled: " + cancelled);
-
         Map<String, Long> counts = new HashMap<>();
         counts.put("all", all);
         counts.put("pending", pending);
