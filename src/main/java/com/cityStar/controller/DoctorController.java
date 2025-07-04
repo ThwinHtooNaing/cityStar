@@ -157,6 +157,13 @@ public class DoctorController {
         doctorService.updateStatus(id, status);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/appointment-stats")
+    @ResponseBody
+    public Map<String, Long> getDoctorAppointmentStats(@AuthenticationPrincipal UserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.getDoctorAppointmentStats(doctor);
+    }
     
     private DoctorDTO getDoctor(CustomUserDetails user){
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());

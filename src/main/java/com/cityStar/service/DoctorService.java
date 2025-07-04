@@ -3,6 +3,7 @@ package com.cityStar.service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.YearMonth;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -159,4 +160,50 @@ public class DoctorService {
                 .map(AppointmentRowMapper::toDto)
                 .toList();
     }
+
+    public Map<String, Long> getDoctorAppointmentStats(Doctor doctor) {
+        Map<String, Long> stats = new HashMap<>();
+        stats.put("todayPatients", countUniqueTodayPatients(doctor));
+        stats.put("monthlyAppointments", countMonthlyAppointments(doctor));
+        stats.put("newAppointments", countTodayAppointments(doctor));
+        return stats;
+    }
+
+    private long countTodayAppointments(Doctor doctor) {
+        return getAppointmentsForDoctorInRange(doctor, getStartOfToday(), getEndOfToday()).size();
+    }
+    
+    private long countUniqueTodayPatients(Doctor doctor) {
+        return getAppointmentsForDoctorInRange(doctor, getStartOfToday(), getEndOfToday()).stream()
+                .map(Appointment::getPatient)
+                .distinct()
+                .count();
+    }
+    
+    private long countMonthlyAppointments(Doctor doctor) {
+        return getAppointmentsForDoctorInRange(doctor, getStartOfMonth(), getEndOfMonth()).size();
+    }
+    
+    private List<Appointment> getAppointmentsForDoctorInRange(Doctor doctor, LocalDateTime start, LocalDateTime end) {
+        return appointmentRepository.findAll().stream()
+                .filter(a -> a.getAvailability().getDoctor().equals(doctor))
+                .filter(a -> !a.getAppointmentTime().isBefore(start) && a.getAppointmentTime().isBefore(end))
+                .collect(Collectors.toList());
+    }
+
+    private LocalDateTime getStartOfToday() {
+        return LocalDate.now().atStartOfDay();
+    }
+    
+    private LocalDateTime getEndOfToday() {
+        return LocalDate.now().plusDays(1).atStartOfDay();
+    }
+    
+    private LocalDateTime getStartOfMonth() {
+        return YearMonth.now().atDay(1).atStartOfDay();
+    }
+    
+    private LocalDateTime getEndOfMonth() {
+        return YearMonth.now().atEndOfMonth().plusDays(1).atStartOfDay();
+    }    
 }

@@ -51,6 +51,7 @@ main{
     box-sizing: border-box;
     overflow: hidden;
     max-width: 100%;
+    height: 400px;
 }
 .new-appointment-header {
     display: flex;

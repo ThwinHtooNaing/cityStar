@@ -72,4 +72,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   fetchTodayTopPending(); 
+  loadDashboardStats();
 });
+
+function loadDashboardStats() {
+  fetch("/doctor/appointment-stats")
+    .then((res) => res.json())
+    .then((stats) => {
+      document.querySelectorAll(".card-data-text").forEach((el) => {
+        const label = el.textContent.trim();
+        const countElement = el.previousElementSibling;
+
+        if (label === "Today Patients") {
+          countElement.textContent = stats.todayPatients;
+        } else if (label === "Appointments This Month") {
+          countElement.textContent = stats.monthlyAppointments;
+        } else if (label === "New Appointments") {
+          countElement.textContent = stats.newAppointments;
+        }
+      });
+    });
+}
