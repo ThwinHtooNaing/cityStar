@@ -23,5 +23,4 @@ public class Doctor extends User {
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Availability> availabilities = new ArrayList<>();
-        
 }

@@ -82,7 +82,7 @@
     color: #2e7d32;
 }
   
-.status-badge.canceled {
+.status-badge.cancelled {
     background-color: #ffcdd2;
     color: #c62828;
 }
@@ -167,4 +167,10 @@
     will-change: transform, width;
     z-index: 0;
     border-radius: 2px;
+}
+
+.action-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
 }

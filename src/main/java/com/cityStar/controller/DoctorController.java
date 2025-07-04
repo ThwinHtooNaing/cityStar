@@ -1,17 +1,24 @@
 package com.cityStar.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cityStar.dto.AppointmentDTO;
 import com.cityStar.dto.AvailabilityDTO;
 import com.cityStar.dto.DoctorDTO;
+import com.cityStar.enums.Status;
 import com.cityStar.model.Availability;
 import com.cityStar.model.Doctor;
 import com.cityStar.rowmapper.AvailabilityRowMapper;
@@ -22,6 +29,7 @@ import com.cityStar.service.UserService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -104,6 +112,43 @@ public class DoctorController {
         }
         AvailabilityDTO dto = AvailabilityRowMapper.toDto(latest);
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/all/appointments")
+    @ResponseBody
+    public List<AppointmentDTO> getAppointments(
+            @RequestParam(required = false) Status status,
+            @AuthenticationPrincipal UserDetails user) {
+
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+
+        if (status != null) {
+            if (status == Status.Confirmed || status == Status.Cancelled) {
+                return doctorService.getAppointmentsByDoctorAndStatus(doctor, status);
+            } else {
+                status = Status.Pending; 
+                return doctorService.getAppointmentsByDoctorAndStatus(doctor, status);
+            }
+        } else {
+            return doctorService.getAllAppointmentsByDoctor(doctor);
+        }
+    }
+
+    @GetMapping("/appointment-counts")
+    @ResponseBody
+    public Map<String, Long> getAppointmentCounts(@AuthenticationPrincipal UserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.getAppointmentCountsByStatusForDoctor(doctor);
+    }
+
+    @PatchMapping("/update-status/{id}")
+    @ResponseBody
+    public ResponseEntity<Void> updateAppointmentStatus(
+            @PathVariable Long id,
+            @RequestParam Status status
+    ) {
+        doctorService.updateStatus(id, status);
+        return ResponseEntity.ok().build();
     }
     
     private DoctorDTO getDoctor(CustomUserDetails user){

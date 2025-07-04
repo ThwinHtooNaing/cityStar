@@ -36,3 +36,4 @@ public class AdminInitializer implements CommandLineRunner {
         }
     }
 }
+
