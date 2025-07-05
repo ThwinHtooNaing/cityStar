@@ -104,18 +104,21 @@ document.addEventListener("DOMContentLoaded", () => {
             : "Cancelled";
 
           fetch(`/doctor/update-status/${appointmentId}?status=${newStatus}`, {
-            method: "PATCH",           
+            method: "PATCH",
             headers: {
-              [csrfHeader]: csrfToken
-            }
+              [csrfHeader]: csrfToken,
+            },
           })
             .then((res) => {
               if (res.ok) {
                 fetchAppointments(status); // reload tabl
                 updateCounts(); // refresh counts
+                showToast("success", "Success!", "Appointment status updated.");
               }
             })
-            .catch((err) => console.error("Status update failed", err));
+            .catch((err) =>
+              showToast("error", "Error", err.message || "Something went wrong!")
+            );
         });
       });
     });
@@ -137,6 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  fetchAppointments(); // Initial load with all appointments
+  fetchAppointments(); 
   updateCounts();
 });

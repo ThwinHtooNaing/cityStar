@@ -164,6 +164,17 @@ public class DoctorService {
         return stats;
     }
 
+    public List<AppointmentDTO> getTodayAppointmentDTOs(Doctor doctor) {
+        LocalDateTime startOfToday = LocalDate.now().atStartOfDay();
+        LocalDateTime endOfToday = LocalDate.now().plusDays(1).atStartOfDay();
+    
+        return appointmentRepository.findByAvailability_DoctorAndAppointmentTimeBetween(
+                    doctor, startOfToday, endOfToday)
+                .stream()
+                .map(AppointmentRowMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
     public Map<Integer, Long> getDailyPatientCountsForMonth(Doctor doctor) {
         YearMonth currentMonth = YearMonth.now();
         LocalDateTime start = currentMonth.atDay(1).atStartOfDay();
@@ -233,5 +244,5 @@ public class DoctorService {
     
     private LocalDateTime getEndOfMonth() {
         return YearMonth.now().atEndOfMonth().plusDays(1).atStartOfDay();
-    }    
+    }
 }

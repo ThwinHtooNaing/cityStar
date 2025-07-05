@@ -67,13 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
         [csrfHeader]: csrfToken,
       },
     }).then((res) => {
-      if (res.ok) fetchTodayTopPending(); // refresh
+      if (res.ok) {
+        showToast('success', 'Success!', 'Appointment status updated.');
+        fetchTodayTopPending();
+      } else {
+        showToast('error', 'Error', 'Something went wrong!.');
+      }
     });
   }
 
   fetchTodayTopPending(); 
   loadDashboardStats();
   loadMonthlyPatientCount();
+  loadAvailabilityTime();
+  loadTodayAppointments();
 });
 
 function loadDashboardStats() {
@@ -100,5 +107,69 @@ function loadMonthlyPatientCount() {
     .then((res) => res.json())
     .then((count) => {
       document.querySelector(".patient-count").textContent = count;
+    });
+}
+
+function loadAvailabilityTime() {
+  fetch("/doctor/availability")
+    .then((res) => {
+      if (!res.ok) throw new Error("No availability found for today");
+      return res.json();
+    })
+    .then((data) => {
+      const startTime = formatTime(data.startTime);
+      const endTime = formatTime(data.endTime);
+
+      document.querySelector(".start-time").textContent = startTime.time;
+      document.querySelector(".start-unit").textContent = startTime.period;
+      document.querySelector(".end-time").textContent = endTime.time;
+      document.querySelector(".end-unit").textContent = endTime.period;
+    })
+    .catch((err) => {
+      console.warn("No availability found for today.");
+      document.querySelector(".appointment-container-header-time").textContent =
+        "No availability today";
+    });
+}
+
+function formatTime(isoTimeString) {
+  const time = new Date(`1970-01-01T${isoTimeString}`);
+  let hours = time.getHours();
+  const minutes = time.getMinutes().toString().padStart(2, "0");
+  const period = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12;
+
+  return {
+    time: `${hours}:${minutes}`,
+    period: period,
+  };
+}
+
+function loadTodayAppointments() {
+  const container = document.querySelector(".appointment-list");
+
+  fetch("/doctor/today-appointments")
+    .then((res) => res.json())
+    .then((appointments) => {
+      container.innerHTML = "";
+
+      appointments.forEach((app) => {
+        const time = new Date(app.appointmentTime);
+        const startTime = time.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const item = document.createElement("div");
+        item.className = "appointment-item";
+        item.innerHTML = `
+          <img src="${app.patient.profilePath}" alt="">
+          <div class="appointment-info">
+            <div class="appointment-name">${app.patient.firstName} ${app.patient.lastName}</div>
+            <div class="appointment-time">${startTime}</div>
+          </div>
+        `;
+        container.appendChild(item);
+      });
     });
 }

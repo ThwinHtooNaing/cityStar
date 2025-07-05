@@ -178,6 +178,13 @@ public class DoctorController {
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
         return doctorService.getDailyPatientCountsForMonth(doctor);
     }
+
+    @GetMapping("/today-appointments")
+    @ResponseBody
+    public List<AppointmentDTO> getTodayAppointments(@AuthenticationPrincipal CustomUserDetails user) {
+        Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
+        return doctorService.getTodayAppointmentDTOs(doctor);
+    }
     
     private DoctorDTO getDoctor(CustomUserDetails user){
         Doctor doctor = (Doctor) userService.findByEmail(user.getUsername());
